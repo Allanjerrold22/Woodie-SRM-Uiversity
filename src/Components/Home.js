@@ -13,14 +13,18 @@ import { DeviceSize } from "../Responsive/index";
 import arrow from "./assets/arrow.svg"
 
 
+
+
+
 const Home=()=>{
     const isMobile = useMediaQuery({ maxWidth: DeviceSize.mobile });
     const isDesktop = useMediaQuery({ maxWidth: DeviceSize.desktop });
 
+    
+
     return(
         
         <div >
-            
            <Butterflybg/>
            
            

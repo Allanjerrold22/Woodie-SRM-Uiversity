@@ -8,6 +8,7 @@ import { useFrame, useLoader } from "@react-three/fiber";
 
 import CanvasLoader from "../Loader";
 import tree from '../assets/treebg.jpg'
+import srmlogo from '../assets/Srmlogo.png';
 
 const Computers = ({ isMobile }) => {
   
@@ -87,7 +88,8 @@ const Butterfly = () => {
     <div> 
       <div className={'text-container'} style={{position:'relative'}}>
 
-      <p style={{position:'absolute',top:200,fontSize:20,fontFamily:'Helvetica',fontWeight:600,left:"20%",color:'#767676'}}>Biodiversity of SRM</p>
+      <img src={srmlogo} style={{width:42,height:42}}/>
+      <p style={{position:'absolute',top:100,fontSize:20,fontFamily:'Helvetica',fontWeight:600,left:"25%",color:'#767676'}}>Biodiversity of SRM</p>
       </div>
     
     <Canvas style={{height:500}}

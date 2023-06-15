@@ -1,26 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
-import Navbar from "./Components/Navbar";
-import Home from "./Components/Home";
-import Countsection from './Components/Countsection';
-import About from './Components/About';
+import Landingpage from './Landingpage';
+import Info from './Components/infopage/Info';
+import Imageviewer from './Components/Imageviewer';
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+ } from "react-router-dom";
 
 import { BrowserRouter } from 'react-router-dom'
 // import Butterfly from './Components/Canvas/Butterfly';
 import { Butterflybg } from "./Components/Canvas";
 
+
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
+    
+    <Router>
+     
+       <Routes>
+   
+     
 
-      <Home/>
-      <Countsection id="counts"/>
+ 
+       <Route exact path='/' element={<Landingpage/>} ></Route>
+        {/* <Route path="Home" element={<Home/>} /> */}
+        <Route path="/Info" element={<Info/>} />
+        <Route path="/imageview" element={<Imageviewer/>} />
+    
+      
 
-      <About/>
+      
+      {/* <Countsection id="counts"/> */}
+
+      {/* <About/> */}
       
       
-    </BrowserRouter>
+      </Routes>
+      </Router>
+    
   );
 }
 

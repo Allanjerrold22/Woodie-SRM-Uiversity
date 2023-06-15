@@ -17,7 +17,9 @@ body {
   align-items: center;
   height: 100%;
 }
-
+.mapbtn{
+  background: linear-gradient(to right, #89B8A3, #0C4D4D)!important;
+}
 .navbar {
   height: 60px;
   z-index: 1;

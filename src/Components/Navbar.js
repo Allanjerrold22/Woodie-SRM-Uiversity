@@ -6,6 +6,8 @@ import Woodie from '../Components/assets/woodie.png'
 import './Nav.css'
 import { Link } from "react-scroll";
 import Countsection from './Countsection';
+import { Button } from "@mui/material";
+import Info from './infopage/Info';
 
 
 const Navbar = () => {
@@ -43,21 +45,25 @@ const Navbar = () => {
         <img src={Menu} style={{ width: 55, height: 55 }} />
         </div>
         <div className={`nav-elements  ${showNavbar && 'active'}`}>
-          <ul>
+          <ul style={{alignItems:'center'}}>
             <li>
-            <Link activeClass="active" smooth spy to={Countsection}>Count </Link>
+            <Link activeClass="active" smooth spy to={Countsection}>Home </Link>
             </li>
             <li>
-              <NavLink to="/blog">Blog</NavLink>
+              <NavLink to="/blog">Stats</NavLink>
             </li>
-            <li>
-              <NavLink to="/projects">Projects</NavLink>
-            </li>
+            
             <li>
               <NavLink to="/about">About</NavLink>
             </li>
             <li>
               <NavLink to="/contact">Contact</NavLink>
+            </li>
+
+            <li>
+              <Button variant="contained" className='mapbtn' style={{background:'#252525',borderRadius:20,paddingRight:32,paddingLeft:32}} >
+                Map
+              </Button>
             </li>
           </ul>
         </div>
