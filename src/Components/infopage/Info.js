@@ -82,7 +82,7 @@ class Info extends React.Component{
           products.map(item =>(
             <div className="details" key={item._id}>
               
-              <div className={'titleheader'} style={{position:'sticky', top:0,backgroundColor:'white',width:"100%",borderRadius:20,zIndex:8}}>
+              <div className={'titleheader'} style={{position:'sticky', top:0,backgroundColor:'white',width:"100%",zIndex:8}}>
                 <div style={{display:'flex',flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
                 <img src={Woodie} style={{height:55,width:55,paddingRight:20}}/>
                 <h3 style={{textAlign:'center'}}>{item.title}</h3>
@@ -110,7 +110,7 @@ class Info extends React.Component{
                  
                  <span>{item.location}</span>
 
-                 <div className={'infobox'} style={{marginTop:32}}>
+                 {/* <div className={'infobox'} style={{marginTop:32}}>
 
                 <div className={'infocard'} style={{borderRadius:12,display:'flex',alignItems:'center', justifyContent:'center',flexDirection:'column'}}>
                    <Chip label="Common Name" variant="contained" style={{fontSize:12,backgroundColor:'#fffff',color:'#252525',position:'relative',top:-10}}/>
@@ -133,7 +133,8 @@ class Info extends React.Component{
                     <p style={{fontSize:16,fontWeight:500,color:'#656565'}}> {item['family']}</p>
                  </div>
 
-                 </div>
+                 </div> */}
+                 <Tabular/>
 
                  <p style={{fontSize:16,fontWeight:500, }}>Description</p>
                 
@@ -162,7 +163,7 @@ class Info extends React.Component{
       
                 <p style={{fontSize:18,fontWeight:600,marginLeft:20}}>Classification</p>
                 <p style={{ fontSize:16,fontWeight:400,marginLeft:20,marginRight:20,color:'#656565'}}> Linnaeus' hierarchical system of classification includes seven levels. They are, from largest to smallest</p>
-                 <Tabular/>
+                 
                  
       </div>
     );

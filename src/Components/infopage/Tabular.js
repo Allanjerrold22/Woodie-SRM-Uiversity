@@ -5,6 +5,10 @@ import Carousel from "./Carousel";
 import { Button } from "@mui/material";
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
+import Banner1 from '../assets/banner1.png';
+import Banner2 from '../assets/banner2.png';
+import Banner3 from '../assets/banner3.png';
+import Banner4 from '../assets/banner4.png';
 
 
 const Tabular=()=> {
@@ -13,25 +17,25 @@ const Tabular=()=> {
     {
       key: uuidv4(),
       content: (
-        <Tabcard imagen="https://updates.theme-fusion.com/wp-content/uploads/2017/12/convertplus_thumbnail.jpg" />
+        <Tabcard imagen={Banner1}/>
       )
     },
     {
       key: uuidv4(),
       content: (
-        <Tabcard imagen="https://updates.theme-fusion.com/wp-content/uploads/2017/12/acf_pro.png" />
+        <Tabcard imagen={Banner2} />
       )
     },
     {
       key: uuidv4(),
       content: (
-        <Tabcard imagen="https://updates.theme-fusion.com/wp-content/uploads/2017/12/layer_slider_plugin_thumb.png" />
+        <Tabcard imagen={Banner3} />
       )
     },
     {
       key: uuidv4(),
       content: (
-        <Tabcard imagen="https://updates.theme-fusion.com/wp-content/uploads/2016/08/slider_revolution-1.png" />
+        <Tabcard imagen={Banner4} />
       )
     },
     {
