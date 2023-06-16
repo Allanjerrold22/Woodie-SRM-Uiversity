@@ -20,15 +20,24 @@ body {
 .mapbtn{
   background: linear-gradient(to right, #89B8A3, #0C4D4D)!important;
 }
+.blureffect{
+  background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 20px );
+-webkit-backdrop-filter: blur( 20px );
+border-radius: 10px;
+}
 .navbar {
-  height: 60px;
-  z-index: 1;
   
-  background-color: #ffff;
+  height: 60px;
+  z-index: 10;
+  margin:10px;
+  
+ 
   position: sticky;
-  top: 0;
+  top:10px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  border-radius: 25px;
+  border-radius: 18px;
   /* width: 100%; */
   
 
@@ -87,17 +96,37 @@ body {
 }
 
 @media (max-width: 600px) {
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .logocenter{
+    display:flex;
+    
+    justify-content:center;
+  }
  
   .menu-icon {
     display: block;
+    position: absolute;
+    right:1px;
+    
     cursor: pointer;
   }
 
   .nav-elements {
+    z-index: 10;
     position: absolute;
     right: 0;
     top: 60px;
-    background-color: #fef7e5;
+    background-color: #ffff;
     width: 0px;
     height: calc(100vh - 60px);
     transition: all 0.3s ease-in;
@@ -116,5 +145,7 @@ body {
   .nav-elements ul li {
     margin-right: unset;
     margin-top: 22px;
+  
+  
   }
 }

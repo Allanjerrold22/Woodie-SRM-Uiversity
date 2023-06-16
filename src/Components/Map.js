@@ -10,9 +10,12 @@ const Map = () => {
 
     return (
         <div>
+            <div>
+            
             <MapInteractionCSS>
                 <img src={map} />
             </MapInteractionCSS>
+            </div>
 
         </div>
     )

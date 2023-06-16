@@ -19,10 +19,12 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
+      <div className="blureffect" style={{}}>
       <div className="container">
+        <div className="logocenter">
         <div className="logo" style={{display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
           {/* <p style={{fontSize:18,fontFamily:'Helvetica',fontWeight:600}}>Woodie</p> */}
-          <Typography
+          <Typography style={{fontWeight:600}}
   variant="h6"
   align="left"
   color="grey.700"
@@ -40,6 +42,7 @@ const Navbar = () => {
 </Typography>   
           
         <img src={Woodie} style={{ width: 55, height: 55 }} />
+        </div>
         </div>
         <div className="menu-icon" onClick={handleShowNavbar}>
         <img src={Menu} style={{ width: 55, height: 55 }} />
@@ -67,6 +70,7 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
+      </div>
       </div>
     </nav>
   )

@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
+import { Typography } from "@mui/material";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import * as THREE from 'three'
 
@@ -86,11 +87,39 @@ const Butterfly = () => {
 
   return (
     <div> 
-      <div className={'text-container'} style={{position:'relative'}}>
+      <div className={'modelbackgroud'} style={{ width: "100%",height:660 ,
+              backgroundImage: "url(/counttree.jpg)",
+              position:'relative',
+              backgroundSize: 'cover', 
+              backgroundPosition: 'center center',
+              backgroundRepeat: 'no-repeat',
 
+              }}>
+      <div className={'text-container'} style={{position:'relative',top:80}}>
+      <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}>
+        
       <img src={srmlogo} style={{width:42,height:42}}/>
-      <p style={{position:'absolute',top:100,fontSize:20,fontFamily:'Helvetica',fontWeight:600,left:"25%",color:'#767676'}}>Biodiversity of SRM</p>
+      <Typography style={{fontSize:24,fontFamily:'Helvetica',fontWeight:800,color:'#2525252',marginTop:10}}
+            variant="h6"
+            align="center"
+            color="grey.700"
+            sx={{
+              backgroundcolor: "primary",
+              backgroundImage: `linear-gradient(45deg, #1EBE5F, #02BAE8)`,
+              backgroundSize: "100%",
+              backgroundRepeat: "repeat",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent"
+            }}>
+          
+          Biodiversity of SRM
+    </Typography>  
+      {/* <p style={{fontSize:20,fontFamily:'Helvetica',fontWeight:600,color:'#2525252'}}>Biodiversity of SRM</p> */}
+      <p style={{fontSize:16,fontFamily:'Helvetica',fontWeight:400,color:'#767676',marginRight:20,marginLeft:20,textAlign:'center'}}>"Unlock the Secrets of Nature <br/>Explore SRM University's Green Campus with a Simple Scan!" </p>
       </div>
+      </div>  
+      
     
     <Canvas style={{height:500}}
       frameloop='demand'
@@ -112,6 +141,8 @@ const Butterfly = () => {
 
       <Preload all />
     </Canvas>
+    </div>
+    
     </div>
   );
 };

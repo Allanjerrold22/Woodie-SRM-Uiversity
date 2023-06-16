@@ -1,9 +1,46 @@
+@font-face{
+
+  font-family:'CanelaBlack';
+  scr: local('CanelaBlack'), url('./Canela_Collection/Canela Family/Canela-Black-Trial.otf') format('otf');
+    
+    
+
+
+
+}
 .cardui{
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 }
 
 .countcard{
 
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
+}
+.abtcard{
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  border:1px solid #0000;
+  /* border-radius:20px;
+  background:
+    linear-gradient(white,white) padding-box,
+    linear-gradient(#02BAE8,#1EBE5F) border-box; */ 
+
+}
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
 }
