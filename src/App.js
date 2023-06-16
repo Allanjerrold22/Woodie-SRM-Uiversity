@@ -2,7 +2,7 @@ import './App.css';
 import Landingpage from './Landingpage';
 import Info from './Components/infopage/Info';
 import Imageviewer from './Components/Imageviewer';
-
+import Map from './Components/Map';
 import {
   BrowserRouter as Router,
   Routes,
@@ -28,7 +28,8 @@ function App() {
         {/* <Route path="Home" element={<Home/>} /> */}
         <Route path="/Info" element={<Info/>} />
         <Route path="/imageview" element={<Imageviewer/>} />
-    
+        <Route path="/map" element={<Map/>} />
+
       
 
       
