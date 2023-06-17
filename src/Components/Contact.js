@@ -49,9 +49,10 @@ const Contact=()=>{
                                 style={{width:280}}
                             />
                             <TextField
-                                helperText="Please enter your E-mail"
-                                id="demo-helper-text-misaligned"
-                                label="E-mail"
+                                id="outlined-multiline-static"
+                                label="Comments"
+                                placeholder="Your valuable feedbacks here"
+                                multiline
                                 
                                 style={{width:280,marginTop:20,color:'#EEEE'}}
                             />

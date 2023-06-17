@@ -36,8 +36,8 @@
   .details .box{
     
     margin-top: 20px;
-    margin-left:20px;
-    margin-right:20px;
+    /* margin-left:20px;
+    margin-right:20px; */
   }
   .box .row{
     display: flex;
@@ -94,4 +94,15 @@
     .thumb img{
       width: 50px;
     }
+  }
+  .titleheader{
+    background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 20px );
+-webkit-backdrop-filter: blur( 20px );
+border-radius: 10px;
+  }
+
+  .classify-card{
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
   }

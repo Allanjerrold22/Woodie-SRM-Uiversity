@@ -47,23 +47,23 @@ const Tabular=()=> {
   ];
   return (
     <div className="">
-      <Carousel
+      {/* <Carousel
         cards={cards}
         height="360px"
         width="30%"
         margin="0 auto"
         offset={2}
         showArrows={false}
-      />
-      <div className='btnrow' style={{display:'flex',justifyContent:'center  '}}>
+      /> */}
+      <div className='btnrow' style={{display:'flex',justifyContent:'center',marginTop:60,marginBottom:60}}>
                 <div >
                  <Button variant="contained" onClick={()=>{
             navigate("/imageview");
-          }} style={{backgroundColor:'#252525',borderRadius:60,position:'absolute',position:'fixed',bottom:32,zIndex:10,padding:32,right:20}}>
+          }} style={{backgroundColor:'#252525',borderRadius:60,position:'absolute',position:'fixed',bottom:20,zIndex:10,padding:32,right:10}}>
                 360°</Button>
                
                 </div>
-                 <Button variant="contained"  style={{backgroundColor:'#89B8A3',borderRadius:16, paddingLeft:24,paddingRight:24}}>Browse more</Button>
+                 <Button variant="contained"  style={{backgroundColor:'#89B8A3',borderRadius:16, paddingLeft:24,paddingRight:24,height:45}}>Browse more</Button>
                  </div>
 
                  

@@ -1,12 +1,24 @@
 import React from 'react';
 import './Info.css';
 import Alert from './Alertmsg'
+import Speech from 'react-speech';
+import TextToSpeech from './TextToSpeech';
+import Marquee from "react-fast-marquee";
+import Classification from './Classification';
+import { Button } from "@mui/material";
+
 
 // import Colors from './Colors'
 import DetailsThumb from './DetailsThumb';
 import Tabular from './Tabular';
 import Chip from '@mui/material/Chip';
 import Woodie from '../assets/woodie.png'
+import Banner1 from '../assets/banner1.png';
+import Banner2 from '../assets/banner2.png';
+import Banner3 from '../assets/banner3.png';
+import Banner4 from '../assets/banner4.png';
+import Locationicon from '../assets/location.svg';
+
 
 
 
@@ -18,12 +30,16 @@ import { Navigate, useNavigate } from 'react-router-dom';
 // import Carousel from "./Carousel";
 
 
+
+
 class Info extends React.Component{
+  
 
   
   
 
   state = {
+    
     products: [
       {
         "_id": "1",
@@ -38,7 +54,7 @@ class Info extends React.Component{
           "tamil name":"Perunkondrai",
           "scientific name":"Peltophorum pterocarpum",
           "family":"Fabaceae",
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+          "description": "Peltophorum pterocarpum is used for fodder. The bark can also be used as dyes as it contains tannins, giving a light yellow colour to leather. Tannin is also present in leaves and wood. In Java, the dye is used for batik work.",
           "uses": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "location": "near University building",
         
@@ -68,9 +84,8 @@ class Info extends React.Component{
 
 
   render(){
+    
     const {products, index} = this.state;
-    
-    
     return(
 
       
@@ -82,7 +97,7 @@ class Info extends React.Component{
           products.map(item =>(
             <div className="details" key={item._id}>
               
-              <div className={'titleheader'} style={{position:'sticky', top:0,backgroundColor:'white',width:"100%",zIndex:8}}>
+              <div className={'titleheader'} style={{position:'sticky', top:0,width:"100%",zIndex:8}}>
                 <div style={{display:'flex',flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
                 <img src={Woodie} style={{height:55,width:55,paddingRight:20}}/>
                 <h3 style={{textAlign:'center'}}>{item.title}</h3>
@@ -92,12 +107,17 @@ class Info extends React.Component{
               
               </div>
               <div className="big-img">
+                
               
                 <img src={item.src[index]} alt=""/>
+                
               </div>
+              
               <div>
               <DetailsThumb images={item.src} tab={this.handleTab} myRef={this.myRef}/>
+              
               </div>
+              
 
               <div className="box">
                 
@@ -107,23 +127,56 @@ class Info extends React.Component{
                 {/* <Colors colors={item.colors} /> */}
               
 
-                 
-                 <span>{item.location}</span>
+                 <div style={{display:'flex',alignItems:'center',justifyContent:'left',marginLeft:16}} >
+                  <img src={Locationicon} style={{width:32,height:32}}/>
+                 <p style={{fontSize:14,color:'#656565'}}>{item.location}</p>
+                 </div>
 
-                 {/* <div className={'infobox'} style={{marginTop:32}}>
+                 <div className={'infobox'} style={{display:'flex',justifyContent:'space-evenly',alignItems:'center',flexWrap:'wrap'}}>
 
-                <div className={'infocard'} style={{borderRadius:12,display:'flex',alignItems:'center', justifyContent:'center',flexDirection:'column'}}>
-                   <Chip label="Common Name" variant="contained" style={{fontSize:12,backgroundColor:'#fffff',color:'#252525',position:'relative',top:-10}}/>
-                   <p style={{fontSize:16,fontWeight:500,color:'#656565',paddingBottom:10}}>{item['common name']}</p>
-                </div>
+                {/* <div className={'infocard'} style={{borderRadius:12,alignItems:'center', justifyContent:'space-between',height:300,display:'flex',width:260,marginLeft:20,marginRight:20}}>
+
+                
+
+                  <img src={Banner1}style={{width:150,height:100,objectFit:'cover',borderTopLeftRadius:12,borderBottomLeftRadius:12}}/>
+                  <Chip label="Common Name" variant="contained" style={{fontSize:12,backgroundColor:'#fffff',color:'#252525',position:'relative',left:50,top:-48}}/> 
+                   <p style={{fontSize:16,fontWeight:500,color:'#656565',textAlign:'center',position:'relative',left:0,top:-48}}>{item['common name']}</p>
+                </div> */}
                  
                  
-                 <div className={'infocard'} style={{borderRadius:12,display:'flex',alignItems:'center', justifyContent:'center',flexDirection:'column',marginTop:32}}>
-                    <Chip label="Tamil Name" style={{fontSize:12,backgroundColor:'#fffff',color:'#252525',position:'relative',top:-10}}/>
-                    <p style={{fontSize:16,fontWeight:500,color:'#656565'}}> {item['tamil name']}</p>
+                 <div className={'infocard'} style={{borderRadius:12, justifyContent:'center',marginTop:32,height:200,width:160}}>
+                 <img src={Banner1}style={{width:160,height:100,objectFit:'cover',borderTopLeftRadius:12,borderTopRightRadius:12}}/>
+                 <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+                    <Chip label="Common Name" style={{fontSize:12,backgroundColor:'#EEEE',color:'#252525',position:'relative',top:-20}}/>
+                  </div>
+                  <p style={{fontSize:16,fontWeight:500,color:'#656565',textAlign:'center',position:'relative',top:-20}}> {item['common name']}</p>
+                 </div>
+
+                 <div className={'infocard'} style={{borderRadius:12, justifyContent:'center',marginTop:32,height:200,width:160}}>
+                 <img src={Banner2}style={{width:160,height:100,objectFit:'cover',borderTopLeftRadius:12,borderTopRightRadius:12}}/>
+                 <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+                    <Chip label="Tamil Name" style={{fontSize:12,backgroundColor:'#EEEE',color:'#252525',position:'relative',top:-20}}/>
+                  </div>
+                  <p style={{fontSize:16,fontWeight:500,color:'#656565',textAlign:'center',position:'relative',top:-20}}> {item['tamil name']}</p>
+                 </div>
+
+                 <div className={'infocard'} style={{borderRadius:12, justifyContent:'center',marginTop:32,height:200,width:160}}>
+                 <img src={Banner3}style={{width:160,height:100,objectFit:'cover',borderTopLeftRadius:12,borderTopRightRadius:12}}/>
+                 <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+                    <Chip label="Scientific Name" style={{fontSize:12,backgroundColor:'#EEEE',color:'#252525',position:'relative',top:-20}}/>
+                  </div>
+                  <p style={{fontSize:16,fontWeight:500,color:'#656565',textAlign:'center',position:'relative',top:-20}}> {item['scientific name']}</p>
+                 </div>
+
+                 <div className={'infocard'} style={{borderRadius:12, justifyContent:'center',marginTop:32,height:200,width:160}}>
+                 <img src={Banner4}style={{width:160,height:100,objectFit:'cover',borderTopLeftRadius:12,borderTopRightRadius:12}}/>
+                 <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+                    <Chip label="Family" style={{fontSize:12,backgroundColor:'#EEEE',color:'#252525',position:'relative',top:-20}}/>
+                  </div>
+                  <p style={{fontSize:16,fontWeight:500,color:'#656565',textAlign:'center',position:'relative',top:-20}}> {item['family']}</p>
                  </div>
  
-                 <div className={'infocard'} style={{borderRadius:12,display:'flex',alignItems:'center', justifyContent:'center',flexDirection:'column',marginTop:32}}>
+                 {/* <div className={'infocard'} style={{borderRadius:12,display:'flex',alignItems:'center', justifyContent:'center',flexDirection:'column',marginTop:32}}>
                     <Chip label="Scientific Name" variant="contained" style={{fontSize:12,backgroundColor:'#fffff',color:'#252525',position:'relative',top:-10}}/>
                     <p style={{fontSize:16,fontWeight:500,color:'#656565'}}> {item['scientific name']}</p>
                  </div>
@@ -131,43 +184,72 @@ class Info extends React.Component{
                  <div className={'infocard'} style={{borderRadius:12,display:'flex',alignItems:'center', justifyContent:'center',flexDirection:'column',marginTop:32}}>
                     <Chip label="Family" variant="contained"style={{fontSize:12,backgroundColor:'#fffff',color:'#252525',position:'relative',top:-10}}/>
                     <p style={{fontSize:16,fontWeight:500,color:'#656565'}}> {item['family']}</p>
+                 </div> */}
+
+
                  </div>
 
-                 </div> */}
-                 <Tabular/>
-
-                 <p style={{fontSize:16,fontWeight:500, }}>Description</p>
-                
-                 <p style={{color:'#656565'}}>{item.description}</p>
-
-                 <p style={{fontSize:16,fontWeight:500, }}>Uses</p>
+                 
 
                 
-                 <p style={{color:'#656565'}}>{item.uses}</p>
-                
-                
-                
-                
-                
-                
+                 {/* <div style={{height:50,width:100,backgroundColor:'#252525'}}>
+            <Speech 
+                    //  styles={{}}
+                    
+                    textAsButton={true} 
+                    displayText="Hello" 
+                     text={item.description} 
+                     pause={true} 
+                     resume={true} 
+                      voice="Google UK English Female"
+                     />
+            </div> */}
 
-              </div>
+            
+                 <div style={{marginRight:16,marginLeft:16,marginTop:32}}>
+                    <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}> 
+     
+                    <p style={{fontSize:16,fontWeight:500,justifyItems:'center' }}>Description</p>
               
-             
+                    <TextToSpeech text={item.description}/>
+                    </div>
+                    <p style={{color:'#656565'}}>{item.description}</p>
+                    <p style={{fontSize:16,fontWeight:500, }}>Uses</p>
+                    <p style={{color:'#656565'}}>{item.uses}</p>
+                 </div>
+              </div>
             </div>
-            
-            
           ) )
           
         }
       
                 <p style={{fontSize:18,fontWeight:600,marginLeft:20}}>Classification</p>
                 <p style={{ fontSize:16,fontWeight:400,marginLeft:20,marginRight:20,color:'#656565'}}> Linnaeus' hierarchical system of classification includes seven levels. They are, from largest to smallest</p>
-                 
-                 
+
+                {/* <Tabular/> */}
+                <Marquee direction ="right" pauseOnClick= "True" style={{width:'100%',display:'flex',justifyContent:'space-evenly'}}>
+
+                <Classification title='Kingdom' class='Plantae'/>
+                <Classification title='Phylum' class='Tracheophytes'/>
+                <Classification title='Class' class='Tracheophytes'/>
+                <Classification title='Order' class='Tracheophytes'/>
+                <Classification title='Family' class='Tracheophytes'/>
+                <Classification title='Genus' class='Tracheophytes'/>
+                <Classification title='Species' class='Tracheophytes'/>
+               </Marquee>
+
+               <Tabular/>
       </div>
     );
   };
+  
+  
+  
 }
+
+
+
+
+
 
 export default Info;

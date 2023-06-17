@@ -2,7 +2,7 @@ import React from "react";
 import tree from "./assets/treebg.jpg";
 import Woodie from '../Components/assets/woodie.png'
 import { Link } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 // import { Button } from "react-scroll";
 import { Button } from "@mui/material";
 
@@ -11,10 +11,12 @@ import { Button } from "@mui/material";
 const Responsivecard=()=>{
 
     
-
+    let navigate = useNavigate();
     return(
         
-        <div className="cardui"  style={{width:174,height:240,justifyContent:'center',backgroundColor:'#FFFF',borderRadius:14,position:'relative',shadowColor: "#000",
+        <div className="cardui" onClick={()=>{
+            navigate("/Info");
+          }} style={{width:174,height:240,justifyContent:'center',backgroundColor:'#FFFF',borderRadius:14,position:'relative',shadowColor: "#000",
         shadowOffset: {
             width: 0,
             height: 2,
