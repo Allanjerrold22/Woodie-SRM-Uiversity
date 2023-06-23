@@ -9,8 +9,12 @@ import Countsection from './Countsection';
 import { Button } from "@mui/material";
 import Info from './infopage/Info';
 
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+
+  const navigate = useNavigate();
+
   const [showNavbar, setShowNavbar] = useState(false)
 
   const handleShowNavbar = () => {
@@ -64,7 +68,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Button variant="contained" className='mapbtn' style={{background:'#252525',borderRadius:20,paddingRight:32,paddingLeft:32}} >
+              <Button onClick={()=> navigate("/map")} variant="contained" className='mapbtn' style={{background:'#252525',borderRadius:20,paddingRight:32,paddingLeft:32}} >
                 Map
               </Button>
             </li>

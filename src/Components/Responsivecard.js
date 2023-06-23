@@ -8,14 +8,14 @@ import { Button } from "@mui/material";
 
 
 
-const Responsivecard=()=>{
+const Responsivecard=(props)=>{
 
     
     let navigate = useNavigate();
     return(
         
         <div className="cardui" onClick={()=>{
-            navigate("/Info");
+            navigate("/Info", {state: props.data});
           }} style={{width:174,height:240,justifyContent:'center',backgroundColor:'#FFFF',borderRadius:14,position:'relative',shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -34,12 +34,9 @@ const Responsivecard=()=>{
                     <div className="imgcontainer" style={{width:174, height:64}}>
                     <img src={tree} style={{width:"100%",borderTopLeftRadius:14,borderTopRightRadius:14}}/>
                     </div>
-                    
-                    <p style={{fontSize:16,color:"#252525",fontWeight:500,position:'absolute',top:"55%",marginLeft:16}}> Tree Name</p>
-                    <p style={{fontSize:14,color:"#767676",fontWeight:400,marginLeft:16 ,position:'absolute',top:"68%"}}> Scientic name of tree</p>
-                   
-                   
-
+                
+                    <p style={{fontSize:16,color:"#252525",fontWeight:500,position:'absolute',top:"55%",marginLeft:16}}>{props.data.name}</p>
+                    <p style={{fontSize:14,color:"#767676",fontWeight:400,marginLeft:16 ,position:'absolute',top:"68%"}}>{props.data.scientificName}</p>
                 </div>
     )
 }

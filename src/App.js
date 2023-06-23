@@ -20,12 +20,7 @@ function App() {
   return (
     
     <Router>
-     
        <Routes>
-   
-     
-
- 
        <Route exact path='/' element={<Landingpage/>} ></Route>
         {/* <Route path="Home" element={<Home/>} /> */}
         <Route path="/Info" element={<Info/>} />

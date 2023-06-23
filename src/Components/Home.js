@@ -15,6 +15,9 @@ import arrow from "./assets/arrow.svg";
 import Downarrow from "./assets/down-arrow.svg";
 import { useState } from "react";
 import '../App.css'
+import { db } from "../FirebaseConfig";
+import { useEffect } from "react";
+import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 
 // import ScrollButton from 'react-scroll-button';
 
@@ -29,48 +32,63 @@ const Home = () => {
 
     const alphabet = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
     const [stackIndex, setStackIndex] = useState(0)
+    const [treeList, setTreeList] = useState([])
 
     const [scrollTop, setScrollTop] = React.useState(false);
-        React.useEffect(() => {
-            window.addEventListener("scroll", () => {
+    React.useEffect(() => {
+        window.addEventListener("scroll", () => {
             if (window) {
                 setScrollTop(true);
             } else {
                 setScrollTop(false);
             }
-            });
-        }, []);
-        const bottomToTop = () => {
-            window.scrollTo({
+        });
+    }, []);
+    const bottomToTop = () => {
+        window.scrollTo({
             top: 760,
             behavior: "smooth",
-            });
-        };
+        });
+    };
+
+    async function fetchTrees() {
+        let temp = []
+        const querySnapshot = await getDocs(collection(db, "trees"));
+        querySnapshot.forEach((doc) => {
+            temp.push(doc.data())
+        });
+        setTreeList(temp)
+    }
+
+
+    useEffect(() => {
+        fetchTrees()
+    }, [])
 
     return (
 
         <div >
             <Butterflybg />
-<div style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
-            {scrollTop && (
-        <div  onClick={bottomToTop} className="backToTop" style={{zIndex:20,position:'relative',top:-140,height:45,width:160,display:'flex',alignItems:'center',justifyContent:'center'}}>
-        
-         <p style={{color:"#ffff"}}>Click to Scroll</p>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                {scrollTop && (
+                    <div onClick={bottomToTop} className="backToTop" style={{ zIndex: 20, position: 'relative', top: -140, height: 45, width: 160, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
-         {/* <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}> */}
+                        <p style={{ color: "#ffff" }}>Click to Scroll</p>
 
-         <img src={Downarrow} style={{alignItems:'center',justifyContent:'center',width:32,height:32}}/>
+                        {/* <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}> */}
 
-         {/* </div> */}
+                        <img src={Downarrow} style={{ alignItems: 'center', justifyContent: 'center', width: 32, height: 32 }} />
 
-    
-        </div>
-      )}
+                        {/* </div> */}
 
-</div>
-           
-           
-    
+
+                    </div>
+                )}
+
+            </div>
+
+
+
 
 
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 20, flexWrap: 'wrap' }}>
@@ -83,7 +101,7 @@ const Home = () => {
                 <Button onClick={() => setStackIndex(6)} variant={stackIndex === 6 ? "contained" : "outlined"} style={stackIndex === 6 ? styles.selected : styles.unSelected}>Medicinal plants</Button>
                 <Button onClick={() => setStackIndex(7)} variant={stackIndex === 7 ? "contained" : "outlined"} style={stackIndex === 7 ? styles.selected : styles.unSelected}>Indoor plants</Button>
             </div>
-           
+
 
 
             <div style={{ justifyContent: 'center', display: 'flex', alignItems: 'center', marginTop: 32, }}>
@@ -98,10 +116,20 @@ const Home = () => {
 
             <div className="card-container" id="treecard" style={{ display: 'flex', flexDirection: 'row', marginTop: 32, justifyContent: 'space-evenly', alignItems: 'center', flexWrap: 'wrap' }}>
 
+                {
+                    treeList.map((ele,index)=>{
+                        return(
+                            isMobile ?
+                                <Responsivecard data={ele}/>
+                             : 
+                            <Card data={ele}/>
+                        )
+                    })
+                }
 
+                {/* {isMobile && <Responsivecard />}
                 {isMobile && <Responsivecard />}
                 {isMobile && <Responsivecard />}
-                {isMobile && <Responsivecard />}    
                 {isMobile && <Responsivecard />}
 
 
@@ -109,7 +137,7 @@ const Home = () => {
                 {!isDesktop && <Card />}
                 {!isDesktop && <Card />}
                 {!isDesktop && <Card />}
-                {!isDesktop && <Card />}
+                {!isDesktop && <Card />} */}
 
 
 
@@ -148,16 +176,16 @@ const Home = () => {
 
 const styles = {
     selected: {
-        borderRadius: 20, 
-        backgroundColor: '#252525', 
-        marginLeft: 20, 
+        borderRadius: 20,
+        backgroundColor: '#252525',
+        marginLeft: 20,
         marginTop: 20
     },
-    unSelected:{
-        borderRadius: 20, 
-        borderColor: '#767676', 
-        color: '#767676', 
-        marginLeft: 20, 
+    unSelected: {
+        borderRadius: 20,
+        borderColor: '#767676',
+        color: '#767676',
+        marginLeft: 20,
         marginTop: 20
     }
 };
