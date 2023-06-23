@@ -3,6 +3,8 @@ import Landingpage from './Landingpage';
 import Info from './Components/infopage/Info';
 import Imageviewer from './Components/Imageviewer';
 import Map from './Components/Map';
+import Verification from './Components/Admin-pages/Verification';
+import Dashboard from './Components/Admin-pages/Dashboard';
 import {
   BrowserRouter as Router,
   Routes,
@@ -29,6 +31,8 @@ function App() {
         <Route path="/Info" element={<Info/>} />
         <Route path="/imageview" element={<Imageviewer/>} />
         <Route path="/map" element={<Map/>} />
+        <Route path="/admin" element={<Verification/>} />
+        <Route path="/admin/Dashboard" element={<Dashboard/>} />
 
       
 
