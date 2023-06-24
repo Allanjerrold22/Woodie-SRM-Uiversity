@@ -5,6 +5,7 @@ import Imageviewer from './Components/Imageviewer';
 import Map from './Components/Map';
 import Verification from './Components/Admin-pages/Verification';
 import Dashboard from './Components/Admin-pages/Dashboard';
+
 import {
   BrowserRouter as Router,
   Routes,
