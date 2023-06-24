@@ -2,6 +2,7 @@
   --navBg: #060b26;
 }
 
+@media (min-width: 800px) {
 .navbar2 {
   /* background-color:#252525; */
   height: 0px;
@@ -17,6 +18,18 @@
   margin-left: 2rem;
   font-size: 2rem;
   background: none;
+}
+.menu {
+  position:absolute;
+  width:50;
+  height:50;
+  background-color:#252525 ;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-radius:10;
+  top:50px;
+  left:50px;
 }
 
 .nav-menu {
@@ -77,4 +90,5 @@
 
 span {
   margin-left: 16px;
+}
 }

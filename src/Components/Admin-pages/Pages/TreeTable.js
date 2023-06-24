@@ -47,7 +47,7 @@ const TreeTable = () => {
   };
 
   return (
-  <div style={{marginLeft:20,marginRight:20,marginTop:32}}>
+  <div style={{marginLeft:20,marginRight:20,paddingTop:32}}>
     <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginLeft:20,marginRight:20}}>
       <p style={{fontSize:24,fontWeight:600,color:'#656565',margin:0}}> Woodie Datas</p>
      
@@ -58,13 +58,13 @@ const TreeTable = () => {
     </div>
       
    
-      <Paper style={{marginTop:20}}>
+      <Paper style={{marginTop:20,borderRadius:20}}>
         {/* <SearchBar
           value={searched}
           onChange={(searchVal) => requestSearch(searchVal)}
           onCancelSearch={() => cancelSearch()}
         /> */}
-        <TableContainer style={{width:'100%'}}>
+        <TableContainer  style={{width:'100%'}}>
           <Table className={classes.table} aria-label="simple table" style={{width:2000}}>
             <TableHead>
               <TableRow style={{width:800}}>

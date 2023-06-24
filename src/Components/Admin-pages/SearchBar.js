@@ -11,7 +11,7 @@ import { autocompleteClasses } from '@mui/material/Autocomplete';
 
 const Search = styled('div')(() => ({
   borderRadius: '5px',
-  backgroundColor: '#EEEE',
+  backgroundColor: '#FFFF',
   position: 'relative',
   width: '300px',
   height: '40px',

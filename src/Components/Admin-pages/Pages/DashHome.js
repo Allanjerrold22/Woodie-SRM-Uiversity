@@ -17,12 +17,25 @@ import QRgenerator from "../QRgenerator";
 
 
 const DashHome =()=>{
+
+ 
+    const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+  
+    
+
   const handleClick = () => {
     console.info('You clicked the Chip.');
   };
+  if(isMobile){
+    return (
+    <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+      <p style={{fontSize:20,fontWeight:600,color:'#65656565',textAlign:'center',margin:32}}>
+        Sorry, this page is only available on desktop devices and be accessible only by the department.</p></div>)
+}
+
   return (
    
-    <div  style={{ width: "100%",height:'760px' ,
+    <div  style={{ width: "100%",height:'780px' ,
               backgroundImage: "url(/forest.jpg)",
               backgroundSize: 'cover', 
               backgroundPosition: 'center center',
@@ -181,7 +194,10 @@ const DashHome =()=>{
                 </div>
 
                 </div>
+                <div style={{backgroundColor:'#EEEE'}}>
+                
                 <TreeTable/>
+                </div>
 
 
       </div>

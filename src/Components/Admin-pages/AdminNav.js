@@ -31,7 +31,7 @@ export default function AdminNav() {
         {/* All the icons now are white */}
         <div className="navbar2">
           <Link to="#" className="menu-bars">
-            <div style={{width:50,height:50,backgroundColor:'#252525',display:'flex',justifyContent:'center',alignItems:'center',borderRadius:10,position:'sticky',top:50,left:50}}>
+            <div className="menu" style={{}}>
             <FaIcons.FaBars onClick={showSidebar} />
             </div>
           </Link>
