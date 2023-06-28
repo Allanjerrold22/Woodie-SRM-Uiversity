@@ -1,21 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { auth } from "../../FirebaseConfig";
+import { getAuth, signOut } from "firebase/auth";
 
 // ICONS
 import * as FaIcons from "react-icons/fa"; //Now i get access to all the icons
 import * as AiIcons from "react-icons/ai";
 
 import { IconContext } from "react-icons";
-
-// ROUTING
-
 import { Link } from "react-router-dom";
-
-// DATA FILE
 import { SidebarData } from "./SlidebarData";
-
-// STYLES
 import './Dashboard.css';
 
 export default function AdminNav() {
@@ -54,6 +48,9 @@ export default function AdminNav() {
                 </li>
               );
             })}
+            <li className="nav-text">
+            <button onClick={()=>{signOut(auth)}} style={{ width: 120, height: 45, fontSize: 18, fontWeight: 500, backgroundColor: '#252525', color: '#fff', borderRadius: 12, marginTop: 16 }}> Logout </button>
+                </li>
           </ul>
         </nav>
       </IconContext.Provider>

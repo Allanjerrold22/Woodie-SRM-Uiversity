@@ -96,7 +96,7 @@ const QRsearchbar = ({
     useAutocomplete({
       id: 'use-autocomplete',
       freeSolo: true,
-      options: options || [],
+      options: options || ["apple"],
       getOptionLabel: option => option,
       filterOptions: options => {
         if (options === undefined) return [];
@@ -177,9 +177,7 @@ const QRsearchbar = ({
 };
 
 QRsearchbar.propTypes = {
-  // custom top-level class
   className: PropTypes.string,
-  // changes the default width of component
   width: PropTypes.node,
   // changes the default height of component
   height: PropTypes.node,

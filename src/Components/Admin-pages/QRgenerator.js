@@ -5,28 +5,32 @@ import ModalClose from "@mui/joy/ModalClose";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
 import QRsearchbar from "./QRsearchbar";
-import QRCode from "react-qr-code";
+import QRCode from "qrcode.react";
 import { useState } from "react";
 
 
-export default function QRgenerator() {
+export default function QRgenerator({values}) {
   const [open, setOpen] = useState(false);
   const [selectedData, setSelectedData] = useState(null);
+  const [selectedName, setSelectedName] = useState("Woodie")
 
   const handleDataSelection = (data) => {
-    setSelectedData(data);
+    console.log("Done");
+    setSelectedName(data)
+    setSelectedData("https://biodiversity.srmist.edu.in/Info?tree="+data);
   };
 
   const handleDownloadQR = () => {
     const downloadLink = document.createElement("a");
-    downloadLink.href = document.getElementById("generated-qr").toDataURL();
-    downloadLink.download = "generated_qr.png";
+    console.log("0000000000000");
+    console.log(document.getElementById("generated-qr"));
+    downloadLink.href = document.getElementById("generated-qr").toDataURL("image/png");
+    downloadLink.download = selectedName+".png";
     downloadLink.click();
   };
 
   return (
     <React.Fragment>
-      {/* Generate button */}
       <Button
         variant="outlined"
         color="neutral"
@@ -68,6 +72,7 @@ export default function QRgenerator() {
           }}
         >
           <ModalClose
+          onClick={()=>setSelectedData(null)}
             variant="outlined"
             sx={{
               top: "calc(-1/4 * var(--IconButton-size))",
@@ -93,12 +98,12 @@ export default function QRgenerator() {
           </Typography>
 
           {/* QR search bar */}
-          <QRsearchbar onSelection={handleDataSelection} />
+          <QRsearchbar onSearch={handleDataSelection} options={values} />
 
           {/* Generated QR code */}
           {selectedData && (
-            <div id="generated-qr">
-              <QRCode value={selectedData} size={200} />
+            <div id="generated-qr-div">
+              <QRCode id="generated-qr" value={selectedData} size={200} />
             </div>
           )}
 

@@ -32,6 +32,7 @@ export default function CreationPage(props) {
     const [order, setOrder] = useState("")
     const [genus, setGenus] = useState("")
     const [species, setSpecies] = useState("")
+    const [modalUri, setModalUri] = useState("")
 
     async function uploadTree() {
         try {
@@ -49,7 +50,8 @@ export default function CreationPage(props) {
                 class: _class,
                 order: order,
                 genus: genus,
-                species: species
+                species: species,
+                modaluri: modalUri
             }
             const treeRef = doc(db, 'trees', name);
             await setDoc(treeRef, userObj , { merge: true });
