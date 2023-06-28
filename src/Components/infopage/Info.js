@@ -171,7 +171,7 @@ const src = [
                 <p style={{fontSize:18,fontWeight:600,marginLeft:20}}>Classification</p>
                 <p style={{ fontSize:16,fontWeight:400,marginLeft:20,marginRight:20,color:'#656565'}}> Linnaeus' hierarchical system of classification includes seven levels. They are, from largest to smallest</p>
 
-                <Marquee direction ="right" pauseOnClick= "True" style={{width:'100%',display:'flex',justifyContent:'space-evenly'}}>
+                <Marquee direction ="right" pauseOnClick= "True" style={{width:'100%',display:'flex',justifyContent:'space-evenly',paddingTop:20,paddingBottom:20}}>
 
                 <Classification title='Kingdom' class='Plantae'/>
                 <Classification title='Phylum' class='Tracheophytes'/>

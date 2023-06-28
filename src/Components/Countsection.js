@@ -24,7 +24,7 @@ const Countsection=()=>{
         scrollSpyDelay: 1000,
       });
     return(
-        <div style={{marginTop:80}}>
+        <section style={{marginTop:80}} id="Stats">
             
 
             <p style={{textAlign:'center',justifyContent:'center',fontSize:16,fontWeight:500,fontColor:'#252525'}}> Check out the total Floral Diversity of </p>
@@ -148,7 +148,7 @@ const Countsection=()=>{
             </div>
 
 
-        </div>
+        </section>
     )
 }
 

@@ -15,6 +15,7 @@ import {
 import { BrowserRouter } from 'react-router-dom'
 // import Butterfly from './Components/Canvas/Butterfly';
 import { Butterflybg } from "./Components/Canvas";
+import InteractiveMap from './Components/InteractiveMap';
 
 
 function App() {
@@ -27,8 +28,10 @@ function App() {
         <Route path="/Info" element={<Info/>} />
         <Route path="/imageview" element={<Imageviewer/>} />
         <Route path="/map" element={<Map/>} />
+        <Route path="/Greenmap" element={<InteractiveMap/>} />
         <Route path="/admin" element={<Verification/>} />
         <Route path="/admin/Dashboard" element={<Dashboard/>} />
+        
 
       
 

@@ -227,11 +227,19 @@ const DashHome = () => {
         </div>
 
       </div>
-      <div style={{ backgroundColor: '#EEEE' }}>
+      <div style={{ backgroundColor: '#EEEE' ,paddingBottom:72}}>
 
-{ treeList.length !== 0 &&
-        <TreeTable treeList={treeList} />
-}      </div>
+          { treeList.length !== 0 &&
+                  <TreeTable treeList={treeList} />
+          }      
+          </div>
+
+          <div style={{width:"100%",height:500,display:'flex',justifyContent:'center',alignItems:'center'}}>
+            Map admin screen goes here
+          </div>
+
+
+
 
 
     </div>

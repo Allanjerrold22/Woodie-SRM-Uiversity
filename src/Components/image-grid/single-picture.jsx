@@ -1,3 +1,4 @@
+// Styles
 import { Flex } from "../../styles/globalStyles";
 import {
   Image,

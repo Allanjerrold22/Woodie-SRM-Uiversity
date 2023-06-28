@@ -4,14 +4,26 @@ import Menu from '../Components/assets/menu.png'
 import { Typography } from "@mui/material";
 import Woodie from '../Components/assets/woodie.png'
 import './Nav.css'
-import { Link } from "react-scroll";
 import Countsection from './Countsection';
 import { Button } from "@mui/material";
 import Info from './infopage/Info';
+import {
+  Link,
+  DirectLink,
+  Element,
+  Events,
+  animateScroll,
+  scrollSpy,
+  scroller
+} from "react-scroll";
 
 import { useNavigate } from "react-router-dom";
 
+
+
 const Navbar = () => {
+  
+  
 
   const navigate = useNavigate();
 
@@ -54,17 +66,17 @@ const Navbar = () => {
         <div className={`nav-elements  ${showNavbar && 'active'}`}>
           <ul style={{alignItems:'center'}}>
             <li>
-            <Link activeClass="active" smooth spy to={Countsection}>Home </Link>
+            <Link activeClass="active" smooth spy to="Home"> Home </Link>
             </li>
             <li>
-              <NavLink to="/blog">Stats</NavLink>
+            <Link activeClass="active" smooth spy to="Stats"> Stats </Link>
             </li>
             
             <li>
-              <NavLink to="/about">About</NavLink>
+            <Link activeClass="active" smooth spy to="About"> About </Link>
             </li>
             <li>
-              <NavLink to="/contact">Contact</NavLink>
+            <Link activeClass="active" smooth spy to="Contact"> Contact Us </Link>
             </li>
 
             <li>

@@ -15,7 +15,7 @@ import Quotes from "./Quotes";
 
 const About=()=>{
     return(
-        <div style={{marginTop:140}}>
+        <section style={{marginTop:140}} id="About" >
 
             
 
@@ -53,7 +53,7 @@ const About=()=>{
                 <div style={{backgroundColor:'#ADC1B5',width:80,height:20}}></div>
             </div>
             <Quotes/>
-        </div>
+        </section>
     )
 }
 export default About;

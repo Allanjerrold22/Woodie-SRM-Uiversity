@@ -67,7 +67,7 @@ const Home = () => {
 
     return (
 
-        <div >
+        <section id="Home" >
             <Butterflybg />
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 {scrollTop && (
@@ -162,7 +162,7 @@ const Home = () => {
 
 
 
-        </div>
+        </section>
     )
 
 
