@@ -10,28 +10,46 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Uploaded from "./Pages/Uploaded";
 import DashHome from "./Pages/DashHome";
 import Create from "./Pages/Create";
+import { auth, db } from "../../FirebaseConfig";
+import { doc, getDoc, collection, getDocs } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import {onAuthStateChanged} from "firebase/auth";
+
+
+const Dashboard = () => {
+
+  const navigate = useNavigate();
+
+
+
+  React.useEffect(()=>{
+    const unsub = onAuthStateChanged(auth,user=>{
+        if(user === null){
+          navigate(-1)
+        }
+    })
+    return unsub;
+},[])
 
 
 
 
-const Dashboard=()=>{
+  return (
+    <div>
 
-    return(
-      <div>
-        
-      
-        <AdminNav/>
-        <Routes>
-          <Route exact path="/"  element={<DashHome/>} />
-          <Route path="/products" element={<Uploaded/>} />
-          <Route path="/reports" element={<Create/>} />
-        </Routes>
-        </div>
-      
- 
+
+      <AdminNav />
+      <Routes>
+        <Route exact path="/" element={<DashHome />} />
+        <Route path="/products" element={<Uploaded />} />
+        <Route path="/reports" element={<Create />} />
+      </Routes>
+    </div>
+
+
   );
 }
-    
+
 
 
 export default Dashboard;
