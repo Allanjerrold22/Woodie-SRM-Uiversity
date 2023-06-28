@@ -22,11 +22,14 @@ export default function QRgenerator({values}) {
 
   const handleDownloadQR = () => {
     const downloadLink = document.createElement("a");
-    console.log("0000000000000");
-    console.log(document.getElementById("generated-qr"));
-    downloadLink.href = document.getElementById("generated-qr").toDataURL("image/png");
+    downloadLink.href = document.getElementById("generated-qr").toDataURL("image/png").replace("image/png", "image/octet-stream");
+
     downloadLink.download = selectedName+".png";
+    document.body.appendChild(downloadLink);
+
     downloadLink.click();
+    document.body.removeChild(downloadLink);
+
   };
 
   return (
