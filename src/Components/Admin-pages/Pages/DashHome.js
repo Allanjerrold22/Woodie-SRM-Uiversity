@@ -11,9 +11,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import TreeTable from "./TreeTable";
+import { Button } from "@mui/material";
 import QRgenerator from "../QRgenerator";
 import { auth, db } from "../../../FirebaseConfig";
 import { doc, getDoc, collection, getDocs } from "firebase/firestore";
+import Techpark from "../assets/Techpark.jpg"
+import ParkOutlinedIcon from '@mui/icons-material/ParkOutlined';
+import Mapcard from "../Mapcard";
+import { DeleteTwoTone } from "@mui/icons-material";
+import UploadPlace from "../UploadPlace";
 
 
 
@@ -235,8 +241,23 @@ const DashHome = () => {
         }
       </div>
 
-      <div style={{ width: "100%", height: 500, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        Map admin screen goes here
+      <div className="hotspot-container" style={{paddingLeft:20,paddingRight:20}}>
+      <div style={{display:'flex',flexDirection:'row', justifyContent:'space-between',alignItems:'center',paddingTop:32}}>
+      <p style={{ fontSize: 24, fontWeight: 600, color: '#656565',margin:0}}>Hotspot Datas</p>
+      <Button style={{marginRight:20}}>hi</Button>
+      </div>
+
+      <div style={{ width: "100%",display: 'flex', justifyContent: 'space-evenly', alignItems: 'center',flexWrap:'wrap'}}>
+
+        <Mapcard/>
+        <Mapcard/>
+        <Mapcard/>
+        <Mapcard/>
+        <Mapcard/>
+       
+      </div>
+      <UploadPlace/>
+
       </div>
 
 

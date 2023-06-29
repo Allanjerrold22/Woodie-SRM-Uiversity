@@ -119,7 +119,7 @@ const TreeTable = (props) => {
       <Paper style={{ marginTop: 54, borderRadius: 20 }}>
 
         <TableContainer style={{ width: '100%', borderRadius: 20 }}>
-          <Table className={classes.table} aria-label="simple table" style={{ width: 2500 }}>
+          <Table className={classes.table} aria-label="simple table" style={{ width: 3000 }}>
             <TableHead style={{ backgroundColor: '#252525' }}>
               <TableRow style={{ width: 800 }}>
                 <TableCell align=""> <p style={{ color: '#fff' }}><b>Name</b></p></TableCell>
@@ -167,10 +167,10 @@ const TreeTable = (props) => {
                   </TableCell>
                   <TableCell align="center">
 
-                    <Button variant="contained" onClick={() => {
+                    <button  onClick={() => {
                       setSelectedData("https://biodiversity.srmist.edu.in/Info?tree=" + row.name);
                       handleDownloadQR(row.name)
-                    }} style={{ background: 'black', borderRadius: 6, height: 32, width: 80, marginTop: 0 }}>Generate QR</Button>
+                    }} style={{ background: '#252525', borderRadius: 6, height: 32, marginTop:0,width:100,color:'#ffff'}}>Generate QR</button>
 
                   </TableCell>
 
@@ -187,7 +187,6 @@ const TreeTable = (props) => {
             </TableBody>
           </Table>
           
-          <QRCode style={{}} id="generated-qr2" value={selectedData} size={200} />
 
         </TableContainer>
         <TablePagination
@@ -200,6 +199,28 @@ const TreeTable = (props) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
+
+      <div  style={{ width: "100%",height:500 ,
+              backgroundImage: "url(/QRcover.jpg)",
+              backgroundSize: 'cover', 
+              backgroundPosition: 'center center',
+              backgroundRepeat: 'no-repeat',
+              marginTop:80,
+              borderRadius:32
+              
+              }} >
+
+      <div className="qrexplains" style={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}> 
+
+      <p style={{fontSize:32,color:'#ffff',fontWeight:600}}>QR Example</p>
+
+      <QRCode style={{}} id="generated-qr2" value={selectedData} size={200} />
+
+      <p style={{fontSize:18,color:'#eeee',fontWeight:400,textAlign:'center',marginTop:32}}>The above QR is a example of the QR which will be downloaded <br/>once you click on the Generate QR button</p>
+
+      </div>
+      </div>
+
 
     </div>
   );
