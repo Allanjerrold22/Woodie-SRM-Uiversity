@@ -10,10 +10,18 @@ import {
   Avatar,
   Location,
 } from "./styles";
+import Chip from '@mui/material/Chip';
+// import { ArrowDownwardRounded } from "@mui/icons-material";
+import ParkOutlinedIcon from '@mui/icons-material/ParkOutlined';
+import Tree from './palm-tree.png'
 
 // Assets
 import images from "../../images";
 import { CloseIcon } from "../../images/CustomIcons";
+
+const handleClick = () => {
+  console.info('You clicked the Chip.');
+};
 
 // animation config and variants
 const spring = {
@@ -87,16 +95,40 @@ const SinglePicture = ({
         >
           <Location>{location}</Location>
           <Name>{name}</Name>
-          <Flex>
-            <Avatar
+       
+            {/* <Avatar
               image={
                 !!creator.avatar
                   ? `${creator.avatar}?q=10&w=50`
                   : images.avatarFallback
               }
+            /> */}
+            {/* <PhotographerName>{creator.name}</PhotographerName> */}
+
+            <div style={{display:'flex',alignItems:'center',justifyContent:'space-evenly'}}>
+
+            
+            <Chip
+              label="Banyan tree"
+              onClick={handleClick}
+              style={{background:'#829D94',color:'#fff'}}
+              // onDelete={handleDelete}
+              // deleteIcon={<DoneIcon />}
+              icon={<ParkOutlinedIcon style={{color:'#fff'}}/>}
             />
-            <PhotographerName>{creator.name}</PhotographerName>
-          </Flex>
+            <Chip
+              label="Banyan tree"
+              onClick={handleClick}
+              style={{background:'#829D94',color:'#fff'}}
+              // onDelete={handleDelete}
+              // deleteIcon={<DoneIcon />}
+              icon={<ParkOutlinedIcon style={{color:'#fff'}}/>}
+            />
+            
+            </div>
+            
+   
+
         </InfoCard>
       )}
     </SinglePictureContainer>

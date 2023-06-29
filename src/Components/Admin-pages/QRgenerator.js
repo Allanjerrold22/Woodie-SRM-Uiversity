@@ -71,7 +71,7 @@ export default function QRgenerator({values}) {
             borderRadius: "md",
             p: 3,
             boxShadow: "lg",
-            height: "80%"
+            height: "60%"
           }}
         >
           <ModalClose
@@ -101,26 +101,32 @@ export default function QRgenerator({values}) {
           </Typography>
 
           {/* QR search bar */}
+          <div style={{ display:'flex',justifyContent:'center', alignItems:'center',marginTop:20}}>
           <QRsearchbar onSearch={handleDataSelection} options={values} />
+          </div>
 
           {/* Generated QR code */}
+          <div style={{ display:'flex',justifyContent:'center', alignItems:'center',marginTop:32}}>
           {selectedData && (
             <div id="generated-qr-div">
               <QRCode id="generated-qr" value={selectedData} size={200} />
             </div>
           )}
+          </div>
 
           {/* Download button */}
+          <div style={{ display:'flex',justifyContent:'center', alignItems:'center'}}>
           {selectedData && (
             <Button
-              variant="outlined"
-              color="neutral"
+              variant="contained"
+              
               onClick={handleDownloadQR}
-              style={{ marginTop: 20 }}
+              style={{ marginTop: 20 ,background:'#252525',color:'#ffff'}}
             >
               Download QR
             </Button>
           )}
+          </div>
         </Sheet>
       </Modal>
     </React.Fragment>
