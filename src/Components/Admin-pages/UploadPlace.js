@@ -12,9 +12,107 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useState, useEffect } from 'react'
+import Multiselect from 'multiselect-react-dropdown';
+import { db } from "../../FirebaseConfig";
+import { doc, setDoc } from "firebase/firestore";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
-export default function UploadPlace() {
+export default function UploadPlace(props) {
+
+  async function uploadImage() {
+    if (state.title.trim().length == 0) {
+        handleOpen("Fill the name before proceeding")
+        return
+    }
+    let data = new FormData();
+    data.append("image", image)
+    let config = {
+        method: 'post',
+        url: 'https://biodiversity.srmist.edu.in/api/upload',
+        headers: {
+            'name': state.title + "_Place",
+        },
+        data: data
+    };
+    try {
+
+        await axios.request(config)
+        handleOpen("Success")
+
+    } catch (e) {
+        console.error(e)
+        handleOpen("Unknown error occured")
+
+    }
+}
+
+  const [openSnack, setOpenSnack] = useState(false);
+  const [message, setMessage] = useState("")
+  const [image, setImage] = useState()
+
+  const handleClose = () => {
+      setOpenSnack(false);
+  };
+
+  const handleOpen = (message) => {
+      if(message == "Success"){
+          setSeverity("success")
+      }else{
+          setSeverity("error")
+      }
+      setMessage(message)
+      setOpenSnack(true);
+  };
+
   const [open, setOpen] = React.useState(false);
+  const [state, setState] = useState({})
+  let options = []
+  props.values.map((ele,index)=>{
+    options.push({name: ele, id: index+1})
+  })
+  const [selectedValues, setSelectedValues] = useState([])
+  const [severity, setSeverity] = useState("info")
+
+
+  function onSelect(selectedList, selectedItem) {
+    setSelectedValues(selectedList)
+  }
+
+  function onRemove(selectedList, removedItem) {
+    setSelectedValues(selectedList)
+  }
+
+
+  async function uploadPlace() {
+    // try {
+      let temp = []
+      selectedValues.map((ele)=>{
+        temp.push(ele.name)
+      })
+        const userObj = {
+            title: state.title,
+            location: state.location,
+            tags: temp
+        }
+        const treeRef = doc(db, 'places', state.title);
+        console.log(selectedValues);
+       await setDoc(treeRef, userObj, { merge: true });
+       await uploadImage()
+       props.setPlacesList(oldArray => [...oldArray, userObj]);
+
+
+        handleOpen("Success")
+
+        setOpen(false)
+    // } catch (e) {
+    //     handleOpen("Unknown error occured")
+    //     console.error(e);
+
+    // }
+}
+
+
   return (
     <React.Fragment>
       <Button variant="outlined" color="neutral" onClick={() => setOpen(true)}>
@@ -34,6 +132,7 @@ export default function UploadPlace() {
             borderRadius: 'md',
             p: 3,
             boxShadow: 'lg',
+            padding:10
           }}
         >
           <ModalClose
@@ -57,14 +156,59 @@ export default function UploadPlace() {
             Upload new Place
           </Typography>
           <Typography id="modal-desc" textColor="text.tertiary">
-            Make sure to use <code>aria-labelledby</code> on the modal dialog with an
-            optional <code>aria-describedby</code> attribute.
+            Lorem Ipsum
 
           </Typography>
-          
-          
+
+          <div style={{ marginTop: 20, width: 600 }}>
+            <FormControl>
+              <FormLabel>Title</FormLabel>
+              <Textarea value={state.title} onChange={(e) => { setState(current=> ({...current, title: e.target.value}))}} placeholder="Enter Title" minRows={1} maxRows={1} />
+              {/* <FormHelperText>This is a helper text.</FormHelperText> */}
+            </FormControl>
+          </div>
+
+          <div style={{ marginTop: 20, width: 600 }}>
+            <FormControl>
+              <FormLabel>Location</FormLabel>
+              <Textarea value={state.location} onChange={(e) => { setState(current=> ({...current, location: e.target.value}))}} placeholder="Enter Location" minRows={1} maxRows={1} />
+              {/* <FormHelperText>This is a helper text.</FormHelperText> */}
+            </FormControl>
+          </div>
+          <Multiselect
+            style={{chips:{background:'black'}, option: {color:'black'}, multiselectContainer:{width:600, marginTop:20}, }}
+            options={options} 
+            selectedValues={(values)=>console.log(values)} 
+            onSelect={onSelect} 
+            onRemove={onRemove} 
+            displayValue="name" 
+          />
+          <input
+            accept="image/*"
+            className=""
+            id="raised-button-file"
+            multiple
+            onChange={(event) => {
+              if (!event.target.files) return
+              setImage(event.target.files[0])
+            }}
+            type="file"
+          />
+          <label htmlFor="raised-button-file">
+            <Button onClick={() => { uploadPlace() }} style={{ background: '#252525', color: '#fff', marginTop: 16 }}>
+              Upload
+            </Button>
+          </label>
+
+
         </Sheet>
       </Modal>
+      <Snackbar anchorOrigin={{horizontal: 'center', vertical:'bottom' }}
+                sx={{ width: '60%', minWidth: '300px' }} open={openSnack} autoHideDuration={3000} onClose={handleClose}>
+                <MuiAlert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+                    {message}
+                </MuiAlert>
+            </Snackbar>
     </React.Fragment>
   );
 }

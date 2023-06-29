@@ -499,7 +499,7 @@ export default function CreationPage(props) {
             </Modal>
             <Snackbar anchorOrigin={{horizontal: 'center', vertical:'bottom' }}
                 sx={{ width: '60%', minWidth: '300px' }} open={openSnack} autoHideDuration={3000} onClose={handleClose}>
-                <MuiAlert onClose={handleClose} severity="info" sx={{ width: '100%' }}>
+                <MuiAlert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
                     {message}
                 </MuiAlert>
             </Snackbar>

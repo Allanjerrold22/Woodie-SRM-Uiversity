@@ -91,32 +91,21 @@ const src = [
       
       <div className="app" 
       >
-        
-       
-        
             <div className="details" 
             // key={item._id}
             >
-              
               <div className={'titleheader'} style={{position:'sticky', top:0,width:"100%",zIndex:8}}>
                 <div style={{display:'flex',flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
                 <img src={Woodie} style={{height:55,width:55,paddingRight:20}}/>
-                <h3 style={{textAlign:'center'}}>{tree.name}</h3>
-                
+                <h3 style={{textAlign:'center'}}>{tree.name}</h3> 
               </div>
               {tree.modalUri !== "" && tree.modalUri !== undefined && <Alert/>}
-              
               </div>
               <div className="big-img">
-                
-              
                 <img src={src[index]} alt=""/>
-                
               </div>
-              
               <div>
-              <DetailsThumb images={src} tab={handleTab} myRef={myRef}/>
-              
+              <DetailsThumb images={src} tab={handleTab} myRef={myRef}/>              
               </div>
               
 
