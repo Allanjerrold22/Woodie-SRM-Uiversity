@@ -23,13 +23,17 @@ const DashHome = () => {
   const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
   const [treeList, setTreeList] = React.useState([])
   const [commentList, setCommentList] = React.useState([])
+  const [nameList, setNameList] = React.useState([])
 
   async function fetchTrees() {
     let temp = []
+    let nameTemp = []
     const querySnapshot = await getDocs(collection(db, "trees"));
     querySnapshot.forEach((doc) => {
       temp.push(doc.data())
+      nameTemp.push(doc.data().name)
     });
+    setNameList(nameTemp)
     setTreeList(temp)
   }
 
@@ -43,10 +47,10 @@ const DashHome = () => {
     setCommentList(temp)
   }
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     fetchComments()
     fetchTrees()
-  },[])
+  }, [])
 
   const handleClick = () => {
     console.info('You clicked the Chip.');
@@ -139,7 +143,7 @@ const DashHome = () => {
                       <p style={{ margin: 0, fontSize: 16, fontWeight: 400, textAlign: 'center', lineHeight: 1.2 }}>
                         Generate QR <br />for uploaded datas
                       </p>
-                      <QRgenerator />
+                      <QRgenerator values={nameList} />
                       {/* <button style={{width:100,height:35,fontSize:16,fontWeight:500,backgroundColor:'#252525',color:'#fff',borderRadius:8,marginTop:16}}> Generate </button> */}
 
 
@@ -220,23 +224,20 @@ const DashHome = () => {
 
           </div>
 
-
-
-
-
         </div>
 
       </div>
-      <div style={{ backgroundColor: '#EEEE' ,paddingBottom:72}}>
 
-          { treeList.length !== 0 &&
-                  <TreeTable treeList={treeList} />
-          }      
-          </div>
+      <div style={{ backgroundColor: '#EEEE', paddingBottom: 72 }}>
 
-          <div style={{width:"100%",height:500,display:'flex',justifyContent:'center',alignItems:'center'}}>
-            Map admin screen goes here
-          </div>
+        {treeList.length !== 0 &&
+          <TreeTable treeList={treeList} />
+        }
+      </div>
+
+      <div style={{ width: "100%", height: 500, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        Map admin screen goes here
+      </div>
 
 
 

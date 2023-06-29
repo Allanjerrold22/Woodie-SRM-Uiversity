@@ -11,7 +11,7 @@ import Textarea from '@mui/joy/Textarea';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { db } from "../../FirebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 
@@ -32,6 +32,7 @@ export default function CreationPage(props) {
     const [order, setOrder] = useState("")
     const [genus, setGenus] = useState("")
     const [species, setSpecies] = useState("")
+    const [modalUri, setModalUri] = useState("")
 
     async function uploadTree() {
         try {
@@ -49,12 +50,13 @@ export default function CreationPage(props) {
                 class: _class,
                 order: order,
                 genus: genus,
-                species: species
+                species: species,
+                modaluri: modalUri
             }
             const treeRef = doc(db, 'trees', name);
-            await setDoc(treeRef, userObj , { merge: true });
-            props.setTreeList(oldArray => [...oldArray,userObj] );
-            props.setRows(oldArray => [...oldArray,userObj] );
+            await setDoc(treeRef, userObj, { merge: true });
+            props.setTreeList(oldArray => [...oldArray, userObj]);
+            props.setRows(oldArray => [...oldArray, userObj]);
 
 
             setOpen(false)
@@ -65,6 +67,28 @@ export default function CreationPage(props) {
     }
 
 
+    useEffect(() => {
+        if (props.row != undefined && props.row != null) {
+            setName(props.row.name)
+            setScientificName(props.row.scientificName)
+            setLocation(props.row.location)
+            setCommonName(props.row.commonName)
+            setTamilName(props.row.tamilName)
+            setFamily(props.row.family)
+            setBotanicalDes(props.row.botanicalDes)
+            setUses(props.row.uses)
+            setKingdom(props.row.kingdom)
+            setPhylum(props.row.phylum)
+            _setClass(props.row.class)
+            setOrder(props.row.order)
+            setGenus(props.row.genus)
+            setSpecies(props.row.species)
+            setModalUri(props.row.modalUri)
+        }
+
+    }, [])
+
+
     const handleChange = (event: SelectChangeEvent) => {
         setType(event.target.value);
     };
@@ -73,7 +97,7 @@ export default function CreationPage(props) {
     return (
         <React.Fragment>
             <Button variant="outlined" color="neutral" onClick={() => setOpen(true)} style={{ width: 100, height: 35, fontSize: 16, fontWeight: 500, backgroundColor: '#252525', color: '#fff', borderRadius: 8 }}>
-                Upload
+                {props.title}
             </Button>
             <Modal
                 aria-labelledby="modal-title"

@@ -33,6 +33,9 @@ const Home = () => {
     const alphabet = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
     const [stackIndex, setStackIndex] = useState(0)
     const [treeList, setTreeList] = useState([])
+    const [staticList, setStaticList] = useState([])
+    const [paginationTreeList, setPaginationTreeList] = useState([]) 
+    const [page, setPage] = useState(1)
 
     const [scrollTop, setScrollTop] = React.useState(false);
     React.useEffect(() => {
@@ -53,11 +56,19 @@ const Home = () => {
 
     async function fetchTrees() {
         let temp = []
+        let treeTemp = []
         const querySnapshot = await getDocs(collection(db, "trees"));
         querySnapshot.forEach((doc) => {
-            temp.push(doc.data())
+            const data = doc.data()
+            temp.push(data)
+            if (data.type !== "Trees") {
+                treeTemp.push(data)
+            }
         });
-        setTreeList(temp)
+            setTreeList(treeTemp)
+        
+        setPaginationTreeList(treeTemp)
+        setStaticList(temp)
     }
 
 
@@ -92,14 +103,54 @@ const Home = () => {
 
 
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 20, flexWrap: 'wrap' }}>
-                <Button onClick={() => setStackIndex(0)} variant={stackIndex === 0 ? "contained" : "outlined"} style={stackIndex === 0 ? styles.selected : styles.unSelected}>Trees</Button>
-                <Button onClick={() => setStackIndex(1)} variant={stackIndex === 1 ? "contained" : "outlined"} style={stackIndex === 1 ? styles.selected : styles.unSelected}>Plams</Button>
-                <Button onClick={() => setStackIndex(2)} variant={stackIndex === 2 ? "contained" : "outlined"} style={stackIndex === 2 ? styles.selected : styles.unSelected}>Climbers</Button>
-                <Button onClick={() => setStackIndex(3)} variant={stackIndex === 3 ? "contained" : "outlined"} style={stackIndex === 3 ? styles.selected : styles.unSelected}>Creepers</Button>
-                <Button onClick={() => setStackIndex(4)} variant={stackIndex === 4 ? "contained" : "outlined"} style={stackIndex === 4 ? styles.selected : styles.unSelected}>Flowering Shrubs</Button>
-                <Button onClick={() => setStackIndex(5)} variant={stackIndex === 5 ? "contained" : "outlined"} style={stackIndex === 5 ? styles.selected : styles.unSelected}>Foliage Shrubs</Button>
-                <Button onClick={() => setStackIndex(6)} variant={stackIndex === 6 ? "contained" : "outlined"} style={stackIndex === 6 ? styles.selected : styles.unSelected}>Medicinal plants</Button>
-                <Button onClick={() => setStackIndex(7)} variant={stackIndex === 7 ? "contained" : "outlined"} style={stackIndex === 7 ? styles.selected : styles.unSelected}>Indoor plants</Button>
+                <Button onClick={() => {
+                    setStackIndex(0)
+                    setPage(1)
+                    setPaginationTreeList(staticList.filter((tree) => tree.type === "Trees"))
+                    setTreeList(staticList.filter((tree) => tree.type !== "Trees"))
+                }} variant={stackIndex === 0 ? "contained" : "outlined"} style={stackIndex === 0 ? styles.selected : styles.unSelected}>Trees</Button>
+                <Button onClick={() => {
+                    setStackIndex(1)
+                    setPage(1)
+                    setPaginationTreeList(staticList.filter((tree) => tree.type === "Plams"))
+                    setTreeList(staticList.filter((tree) => tree.type === "Plams"))
+                }} variant={stackIndex === 1 ? "contained" : "outlined"} style={stackIndex === 1 ? styles.selected : styles.unSelected}>Plams</Button>
+                <Button onClick={() => {
+                    setStackIndex(2)
+                    setPage(1)
+                    setPaginationTreeList(staticList.filter((tree) => tree.type === "Climbers"))
+                    setTreeList(staticList.filter((tree) => tree.type === "Climbers"))
+                }} variant={stackIndex === 2 ? "contained" : "outlined"} style={stackIndex === 2 ? styles.selected : styles.unSelected}>Climbers</Button>
+                <Button onClick={() => {
+                    setStackIndex(3)
+                    setPage(1)
+                    setPaginationTreeList(staticList.filter((tree) => tree.type === "Creepers"))
+                    setTreeList(staticList.filter((tree) => tree.type === "Creepers"))
+                }} variant={stackIndex === 3 ? "contained" : "outlined"} style={stackIndex === 3 ? styles.selected : styles.unSelected}>Creepers</Button>
+                <Button onClick={() => {
+                    setStackIndex(4)
+                    setPage(1)
+                    setPaginationTreeList(staticList.filter((tree) => tree.type === "Flowering Shrubs"))
+                    setTreeList(staticList.filter((tree) => tree.type === "Flowering Shrubs"))
+                }} variant={stackIndex === 4 ? "contained" : "outlined"} style={stackIndex === 4 ? styles.selected : styles.unSelected}>Flowering Shrubs</Button>
+                <Button onClick={() => {
+                    setStackIndex(5)
+                    setPage(1)
+                    setPaginationTreeList(staticList.filter((tree) => tree.type === "Foliage Shrubs"))
+                    setTreeList(staticList.filter((tree) => tree.type === "Foliage Shrubs"))
+                }} variant={stackIndex === 5 ? "contained" : "outlined"} style={stackIndex === 5 ? styles.selected : styles.unSelected}>Foliage Shrubs</Button>
+                <Button onClick={() => {
+                    setStackIndex(6)
+                    setPage(1)
+                    setPaginationTreeList(staticList.filter((tree) => tree.type === "Medicinal plants"))
+                    setTreeList(staticList.filter((tree) => tree.type === "Medicinal plants"))
+                }} variant={stackIndex === 6 ? "contained" : "outlined"} style={stackIndex === 6 ? styles.selected : styles.unSelected}>Medicinal plants</Button>
+                <Button onClick={() => {
+                    setStackIndex(7)
+                    setPage(1)
+                    setPaginationTreeList(staticList.filter((tree) => tree.type === "Indoor plants"))
+                    setTreeList(staticList.filter((tree) => tree.type === "Indoor plants"))
+                }} variant={stackIndex === 7 ? "contained" : "outlined"} style={stackIndex === 7 ? styles.selected : styles.unSelected}>Indoor plants</Button>
             </div>
 
 
@@ -108,8 +159,12 @@ const Home = () => {
                 <Pagination
                     count={alphabet.length}
                     variant="outlined"
+                    onChange={(event, value) => {
+                        setPage(1)
+                        setTreeList(paginationTreeList.filter((tree) =>  tree.name.startsWith(alphabet[value - 1]) ) )
+                    }}
                     renderItem={(item) => (
-                        <PaginationItem {...item} page={alphabet[item.page - 1]} />
+                        <PaginationItem  {...item} page={alphabet[item.page - 1]} />
                     )}
                 />
             </div>
@@ -117,12 +172,12 @@ const Home = () => {
             <div className="card-container" id="treecard" style={{ display: 'flex', flexDirection: 'row', marginTop: 32, justifyContent: 'space-evenly', alignItems: 'center', flexWrap: 'wrap' }}>
 
                 {
-                    treeList.map((ele,index)=>{
-                        return(
+                    treeList.slice(0,page*10).map((ele, index) => {
+                        return (
                             isMobile ?
-                                <Responsivecard data={ele}/>
-                             : 
-                            <Card data={ele}/>
+                                <Responsivecard data={ele} />
+                                :
+                                <Card data={ele} />
                         )
                     })
                 }
@@ -145,7 +200,7 @@ const Home = () => {
 
 
             <div style={{ alignItems: 'center', justifyContent: 'center', display: 'flex', marginTop: 32 }} >
-                <Button variant="contained" style={{ backgroundColor: '#252525', borderRadius: 20 }} >
+                <Button  onClick={()=>{setPage(page+1)}} variant="contained" style={{ backgroundColor: '#252525', borderRadius: 20 }} >
                     View more
                     <img src={arrow} style={{ height: 24, width: 24 }} />
 

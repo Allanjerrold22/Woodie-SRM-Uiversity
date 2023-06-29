@@ -18,9 +18,10 @@ import Banner2 from '../assets/banner2.png';
 import Banner3 from '../assets/banner3.png';
 import Banner4 from '../assets/banner4.png';
 import Locationicon from '../assets/location.svg';
+import { useSearchParams } from 'react-router-dom';
 
-
-
+import { doc, getDoc, collection, getDocs } from "firebase/firestore";
+import { db } from '../../FirebaseConfig';
 
 
 import Fab from '@mui/material/Fab';
@@ -35,6 +36,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 const Info = ()=>{
   
 const location = useLocation()
+const [searchParams, setSearchParams] = useSearchParams();
 
 const src = [
   "https://images.unsplash.com/reserve/bOvf94dPRxWu0u3QsPjF_tree.jpg?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1176&q=80",
@@ -58,8 +60,23 @@ const src = [
 
 
   useEffect(()=>{
-    console.log(location)
-    setTree(location.state)
+    if(location.state !== null){
+      setTree(location.state)
+    }else{
+      const tree = searchParams.get("tree")
+      const docRef = doc(db, "trees", tree);
+      getDoc(docRef).then((doc)=>{
+        console.log("========");
+        console.log(doc);
+        console.log("========");
+        setTree(doc.data())
+      })
+     
+    
+    
+      
+    }
+    
 
   },[])
 
@@ -83,7 +100,7 @@ const src = [
                 <h3 style={{textAlign:'center'}}>{tree.name}</h3>
                 
               </div>
-              <Alert/>
+              {tree.modalUri !== "" && tree.modalUri !== undefined && <Alert/>}
               
               </div>
               <div className="big-img">
