@@ -19,16 +19,12 @@ import Banner3 from '../assets/banner3.png';
 import Banner4 from '../assets/banner4.png';
 import Locationicon from '../assets/location.svg';
 import { useSearchParams } from 'react-router-dom';
-
-import { doc, getDoc, collection, getDocs } from "firebase/firestore";
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import { doc, getDoc, collection, getDocs, updateDoc, increment } from "firebase/firestore";
 import { db } from '../../FirebaseConfig';
 
 
-import Fab from '@mui/material/Fab';
-import { v4 as uuidv4 } from "uuid";
-import { Navigate, useNavigate } from 'react-router-dom';
-// import Card from "../Card";
-// import Carousel from "./Carousel";
 
 
 
@@ -59,6 +55,18 @@ const src = [
   const [tree, setTree] = useState({})
 
 
+  const increaseFieldByOne = async (fieldToUpdate) => {
+    try {
+      const docRef = doc(db, 'stats', "scanned");
+      await updateDoc(docRef, {
+        [fieldToUpdate]: increment(1),
+      });
+      console.log('Field updated successfully!');
+    } catch (error) {
+      console.error('Error updating field:', error);
+    }
+  };
+
   useEffect(()=>{
     if(location.state !== null){
       setTree(location.state)
@@ -66,15 +74,11 @@ const src = [
       const tree = searchParams.get("tree")
       const docRef = doc(db, "trees", tree);
       getDoc(docRef).then((doc)=>{
-        console.log("========");
-        console.log(doc);
-        console.log("========");
         setTree(doc.data())
       })
+      increaseFieldByOne(tree)
+
      
-    
-    
-      
     }
     
 
@@ -190,16 +194,16 @@ const src = [
 
                 <Marquee direction ="right" pauseOnClick= "True" style={{width:'100%',display:'flex',justifyContent:'space-evenly',paddingTop:20,paddingBottom:20}}>
 
-                <Classification title='Kingdom' class='Plantae'/>
-                <Classification title='Phylum' class='Tracheophytes'/>
-                <Classification title='Class' class='Tracheophytes'/>
-                <Classification title='Order' class='Tracheophytes'/>
-                <Classification title='Family' class='Tracheophytes'/>
-                <Classification title='Genus' class='Tracheophytes'/>
-                <Classification title='Species' class='Tracheophytes'/>
+                <Classification title='Kingdom' class={tree['kingdom']}/>
+                <Classification title='Phylum' class={tree['phylum']}/>
+                <Classification title='Class' class={tree['class']}/>
+                <Classification title='Order' class={tree['order']}/>
+                <Classification title='Family' class={tree['family']}/>
+                <Classification title='Genus' class={tree['genus']}/>
+                <Classification title='Species' class={tree['species']}/>
                </Marquee>
 
-               <Tabular/>
+               {tree.modalUri !== "" && tree.modalUri !== undefined &&  <Tabular/> }
       </div>
     );
   

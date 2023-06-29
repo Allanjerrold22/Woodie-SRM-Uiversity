@@ -20,6 +20,7 @@
     "@types/node": "^20.3.1",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
+    "axios": "^1.4.0",
     "firebase": "^9.22.2",
     "framer-motion": "^10.12.16",
     "material-ui-search-bar": "^1.0.0",

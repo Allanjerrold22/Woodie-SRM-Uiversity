@@ -14,6 +14,10 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useState, useEffect } from 'react'
 import { db } from "../../FirebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
+import axios from 'axios'
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
 
 export default function CreationPage(props) {
     const [type, setType] = React.useState('');
@@ -33,6 +37,8 @@ export default function CreationPage(props) {
     const [genus, setGenus] = useState("")
     const [species, setSpecies] = useState("")
     const [modalUri, setModalUri] = useState("")
+
+    const [severity, setSeverity] = useState("info")
 
     async function uploadTree() {
         try {
@@ -58,9 +64,11 @@ export default function CreationPage(props) {
             props.setTreeList(oldArray => [...oldArray, userObj]);
             props.setRows(oldArray => [...oldArray, userObj]);
 
+            handleOpen("Success")
 
             setOpen(false)
         } catch (e) {
+            handleOpen("Unknown error occured")
             console.error(e);
 
         }
@@ -89,8 +97,126 @@ export default function CreationPage(props) {
     }, [])
 
 
-    const handleChange = (event: SelectChangeEvent) => {
+    const handleChange = (event) => {
         setType(event.target.value);
+    };
+
+    async function uploadImages() {
+        if (name.trim().length == 0) {
+            handleOpen("Fill the name before proceeding")
+            return
+        }
+        let data = new FormData();
+        data.append("image", image)
+        let config = {
+            method: 'post',
+            url: 'https://biodiversity.srmist.edu.in/api/upload',
+            headers: {
+                'name': name,
+            },
+            data: data
+        };
+
+
+        let data2 = new FormData();
+        data2.append("image", image2)
+        let config2 = {
+            method: 'post',
+            url: 'https://biodiversity.srmist.edu.in/api/upload',
+            headers: {
+                'name': name + "2",
+            },
+            data: data2
+        };
+
+
+        let data3 = new FormData();
+        data3.append("image", image3)
+        let config3 = {
+            method: 'post',
+            url: 'https://biodiversity.srmist.edu.in/api/upload',
+            headers: {
+                'name': name + "3",
+            },
+            data: data3
+        };
+
+
+
+        let data4 = new FormData();
+        data4.append("image", image4)
+        let config4 = {
+            method: 'post',
+            url: 'https://biodiversity.srmist.edu.in/api/upload',
+            headers: {
+                'name': name + "4",
+            },
+            data: data4
+        };
+
+        try {
+
+            await axios.request(config)
+            await axios.request(config2)
+            await axios.request(config3)
+            await axios.request(config4)
+            handleOpen("Success")
+        } catch (e) {
+            console.error(e)
+            handleOpen("Unknown error occured")
+
+        }
+    }
+
+    async function uploadPano() {
+        if (name.trim().length == 0) {
+            handleOpen("Fill the name before proceeding")
+            return
+        }
+        let data = new FormData();
+        data.append("image", panoImage)
+        let config = {
+            method: 'post',
+            url: 'https://biodiversity.srmist.edu.in/api/upload',
+            headers: {
+                'name': name + "Pano",
+            },
+            data: data
+        };
+        try {
+
+            await axios.request(config)
+            setModalUri(true)
+            handleOpen("Success")
+
+        } catch (e) {
+            console.error(e)
+            handleOpen("Unknown error occured")
+
+        }
+    }
+
+    const [panoImage, setPanoImage] = useState("")
+    const [image, setImage] = useState("")
+    const [image2, setImage2] = useState("")
+    const [image3, setImage3] = useState("")
+    const [image4, setImage4] = useState("")
+    const [message, setMessage] = useState("")
+
+    const [openSnack, setOpenSnack] = useState(false);
+
+    const handleClose = () => {
+        setOpenSnack(false);
+    };
+
+    const handleOpen = (message) => {
+        if(message == "Success"){
+            setSeverity("success")
+        }else{
+            setSeverity("error")
+        }
+        setMessage(message)
+        setOpenSnack(true);
     };
 
     const [open, setOpen] = React.useState(false);
@@ -260,29 +386,53 @@ export default function CreationPage(props) {
                             <input
                                 accept="image/*"
                                 className=""
-                                style={{ display: 'none' }}
                                 id="raised-button-file"
                                 multiple
+                                onChange={(event) => {
+                                    if (!event.target.files) return
+                                    setImage(event.target.files[0])
+                                }}
+                                type="file"
+                            />
+                            <input
+                                accept="image/*"
+                                className=""
+                                id="raised-button-file"
+                                multiple
+                                onChange={(event) => {
+                                    if (!event.target.files) return
+                                    setImage2(event.target.files[0])
+                                }}
+                                type="file"
+                            />
+                            <input
+                                accept="image/*"
+                                className=""
+                                id="raised-button-file"
+                                multiple
+                                onChange={(event) => {
+                                    if (!event.target.files) return
+                                    setImage3(event.target.files[0])
+                                }}
+                                type="file"
+                            />
+                            <input
+                                accept="image/*"
+                                className=""
+                                id="raised-button-file"
+                                multiple
+                                onChange={(event) => {
+                                    if (!event.target.files) return
+                                    setImage4(event.target.files[0])
+                                }}
                                 type="file"
                             />
                             <label htmlFor="raised-button-file">
-                                <Button style={{ background: '#252525', color: '#fff', marginTop: 16 }}>
+                                <Button onClick={() => { uploadImages() }} style={{ background: '#252525', color: '#fff', marginTop: 16 }}>
                                     Upload
                                 </Button>
                             </label>
-                            {/* <input
-                            accept="image/*"
-                            className={classes.input}
-                            style={{ display: 'none' }}
-                            id="raised-button-file"
-                            multiple
-                            type="file"
-                            />
-                            <label htmlFor="raised-button-file">
-                            <Button variant="raised" component="span" className={classes.button}>
-                                Upload
-                            </Button>
-                            </label>  */}
+
 
                             <Typography id="modal-desc" textColor="text.tertiary" style={{ marginTop: 20 }}>
                                 Upload 360° image if available
@@ -290,14 +440,16 @@ export default function CreationPage(props) {
 
                             <input
                                 accept="image/*"
-
-                                style={{ display: 'none' }}
                                 id="raised-button-file"
                                 multiple
+                                onChange={(event) => {
+                                    if (!event.target.files) return
+                                    setPanoImage(URL.createObjectURL(event.target.files[0]))
+                                }}
                                 type="file"
                             />
                             <label htmlFor="raised-button-file">
-                                <Button style={{ background: '#252525', color: '#fff', marginTop: 16 }}>
+                                <Button onClick={() => { uploadPano() }} style={{ background: '#252525', color: '#fff', marginTop: 16 }}>
                                     Upload
                                 </Button>
                             </label>
@@ -345,6 +497,12 @@ export default function CreationPage(props) {
 
                 </Sheet>
             </Modal>
+            <Snackbar anchorOrigin={{horizontal: 'center', vertical:'bottom' }}
+                sx={{ width: '60%', minWidth: '300px' }} open={openSnack} autoHideDuration={3000} onClose={handleClose}>
+                <MuiAlert onClose={handleClose} severity="info" sx={{ width: '100%' }}>
+                    {message}
+                </MuiAlert>
+            </Snackbar>
         </React.Fragment>
     );
 }
