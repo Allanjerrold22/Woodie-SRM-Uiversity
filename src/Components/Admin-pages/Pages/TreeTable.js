@@ -15,6 +15,11 @@ import Search from '../assets/Search.svg'
 import { Container, InputAdornment, TextField, InputBase } from "@mui/material";
 // import SearchIcon from "@mui/icons-material/Search";
 import QRCode from "qrcode.react";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const useStyles = makeStyles({
   table: {
@@ -84,6 +89,15 @@ const TreeTable = (props) => {
     }, 1000);
 
   };
+  const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
   return (
     <div style={{ marginLeft: 20, marginRight: 20, paddingTop: 100 }}>
@@ -120,22 +134,22 @@ const TreeTable = (props) => {
 
         <TableContainer style={{ width: '100%', borderRadius: 20 }}>
           <Table className={classes.table} aria-label="simple table" style={{ width: 3000 }}>
-            <TableHead style={{ backgroundColor: '#252525' }}>
-              <TableRow style={{ width: 800 }}>
-                <TableCell align=""> <p style={{ color: '#fff' }}><b>Name</b></p></TableCell>
-                <TableCell align="center"> <p style={{ color: '#fff' }}><b>Sci- Name</b></p></TableCell>
-                <TableCell align="center" > <p style={{ color: '#fff' }}><b>Location</b></p></TableCell>
-                <TableCell align="center" > <p style={{ color: '#fff' }}><b>Common Name</b></p></TableCell>
-                <TableCell align="center" > <p style={{ color: '#fff' }}><b>Tamil Name</b></p></TableCell>
-                <TableCell align="center" > <p style={{ color: '#fff' }}><b>Family</b></p></TableCell>
-                <TableCell align="center"> <p style={{ color: '#fff' }}><b>Description</b></p></TableCell>
-                <TableCell align="center"> <p style={{ color: '#fff' }}><b>Uses</b></p></TableCell>
-                <TableCell align="center" > <p style={{ color: '#fff' }}><b>Kingdom</b></p></TableCell>
-                <TableCell align="center" > <p style={{ color: '#fff' }}><b>Phylum</b></p></TableCell>
-                <TableCell align="center" > <p style={{ color: '#fff' }}><b>Class</b></p></TableCell>
-                <TableCell align="center" > <p style={{ color: '#fff' }}><b>Order</b></p></TableCell>
-                <TableCell align="center" > <p style={{ color: '#fff' }}><b>Genus</b></p></TableCell>
-                <TableCell align="center" > <p style={{ color: '#fff' }}><b>Species</b></p></TableCell>
+            <TableHead style={{ backgroundColor: '#252525', height:45}}>
+              <TableRow style={{ width: 45 }}>
+                <TableCell align=""> <p style={{ color: '#fff',padding:0,margin:0}}><b>Name</b></p></TableCell>
+                <TableCell align="center"> <p style={{ color: '#fff' ,padding:0,margin:0}}><b>Sci- Name</b></p></TableCell>
+                <TableCell align="center" > <p style={{ color: '#fff' ,padding:0,margin:0}}><b>Location</b></p></TableCell>
+                <TableCell align="center" > <p style={{ color: '#fff',padding:0,margin:0}}><b>Common Name</b></p></TableCell>
+                <TableCell align="center" > <p style={{ color: '#fff' ,padding:0,margin:0}}><b>Tamil Name</b></p></TableCell>
+                <TableCell align="center" > <p style={{ color: '#fff' ,padding:0,margin:0}}><b>Family</b></p></TableCell>
+                <TableCell align="center"> <p style={{ color: '#fff' ,padding:0,margin:0}}><b>Description</b></p></TableCell>
+                <TableCell align="center"> <p style={{ color: '#fff' ,padding:0,margin:0}}><b>Uses</b></p></TableCell>
+                <TableCell align="center" > <p style={{ color: '#fff',padding:0 ,margin:0}}><b>Kingdom</b></p></TableCell>
+                <TableCell align="center" > <p style={{ color: '#fff',padding:0,margin:0 }}><b>Phylum</b></p></TableCell>
+                <TableCell align="center" > <p style={{ color: '#fff' ,padding:0,margin:0}}><b>Class</b></p></TableCell>
+                <TableCell align="center" > <p style={{ color: '#fff' ,padding:0,margin:0}}><b>Order</b></p></TableCell>
+                <TableCell align="center" > <p style={{ color: '#fff' ,padding:0,margin:0}}><b>Genus</b></p></TableCell>
+                <TableCell align="center" > <p style={{ color: '#fff' ,padding:0,margin:0}}><b>Species</b></p></TableCell>
                 <TableCell align="center" > <div></div></TableCell>
                 <TableCell align="center" > <div></div></TableCell>
                 <TableCell align="center" > <div></div></TableCell>
@@ -147,22 +161,46 @@ const TreeTable = (props) => {
               {rows.slice(pg * rpg, pg * rpg + rpg).map((row) => (
                 <TableRow key={row.name}>
                   <TableCell component="th" scope="row" width="120"> {row.name} </TableCell>
-                  <TableCell align="center">{row.scientificName}</TableCell>
-                  <TableCell align="center">{row.location}</TableCell>
-                  <TableCell align="center">{row.commonName}</TableCell>
-                  <TableCell align="center">{row.tamilName}</TableCell>
-                  <TableCell align="center">{row.family}</TableCell>
-                  <TableCell align="left" width="300">{row.botanicalDes}</TableCell>
+                  <TableCell align="left">{row.scientificName}</TableCell>
+                  <TableCell align="left">{row.location}</TableCell>
+                  <TableCell align="left">{row.commonName}</TableCell>
+                  <TableCell align="left">{row.tamilName}</TableCell>
+                  <TableCell align="left">{row.family}</TableCell>
+                  <TableCell align="left" width="600">{row.botanicalDes}</TableCell>
                   <TableCell align="left" width="600">{row.uses}</TableCell>
-                  <TableCell align="center">{row.kingdom}</TableCell>
-                  <TableCell align="center">{row.phylum}</TableCell>
-                  <TableCell align="center">{row.class}</TableCell>
-                  <TableCell align="center">{row.order}</TableCell>
-                  <TableCell align="center">{row.genus}</TableCell>
-                  <TableCell align="center">{row.species}</TableCell>
-                  <TableCell align="center">
+                  <TableCell align="left">{row.kingdom}</TableCell>
+                  <TableCell align="left">{row.phylum}</TableCell>
+                  <TableCell align="left">{row.class}</TableCell>
+                  <TableCell align="left">{row.order}</TableCell>
+                  <TableCell align="left">{row.genus}</TableCell>
+                  <TableCell align="left">{row.species}</TableCell>
+                  <TableCell align="left">
 
-                    <Button variant="contained" onClick={() => { deleteTree(row.name) }} style={{ background: '#F25C6F', borderRadius: 6, height: 32, width: 80, marginTop: 0 }}>Delete</Button>
+                    
+                    <Button variant="contained"  onClick={handleClickOpen} style={{ background: '#F25C6F', borderRadius: 6, height: 32, width: 80, marginTop: 0 }}>Delete</Button>    
+                        <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"    
+                        >
+                            <DialogTitle id="alert-dialog-title">
+                            {"Delete Confirmation"}
+                            </DialogTitle>
+                            <DialogContent >
+                            <DialogContentText id="alert-dialog-description">
+                               Are you sure you want to delete this Data permanently from the Woodie ?
+                            </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                            <Button onClick={handleClose} style={{background:'#EEEE',color:'#656565'}} >Cancel</Button>
+                            <Button  onClick={() => { deleteTree(row.name) }}  autoFocus style={{background:'#F25C6F',color:'#ffff'}}>
+                                Delete
+                            </Button>
+                            </DialogActions>
+                        </Dialog>
+
+                        
 
                   </TableCell>
                   <TableCell align="center">

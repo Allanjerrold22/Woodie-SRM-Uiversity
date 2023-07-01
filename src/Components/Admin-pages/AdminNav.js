@@ -49,7 +49,7 @@ export default function AdminNav() {
               );
             })}
             <li className="nav-text">
-            <button onClick={()=>{signOut(auth)}} style={{ width: 120, height: 45, fontSize: 18, fontWeight: 500, backgroundColor: '#252525', color: '#fff', borderRadius: 12, marginTop: 16 }}> Logout </button>
+            <button onClick={()=>{signOut(auth)}} style={{ width: 120, height: 45, fontSize: 18, fontWeight: 500, backgroundColor: '#829D94', color: '#fff', borderRadius: 12, marginTop: 16,borderWidth:0}}> Logout </button>
                 </li>
           </ul>
         </nav>

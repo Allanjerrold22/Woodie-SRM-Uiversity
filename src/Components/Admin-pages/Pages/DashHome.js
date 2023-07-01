@@ -4,9 +4,9 @@ import Tree from '../assets/tree-icon.svg'
 import QR from '../assets/QR.svg'
 import Palm from '../assets/3Dtree.png'
 import Heart from '../assets/heart.svg'
-import CountUp from 'react-countup';
 import Chip from '@mui/material/Chip';
 import List from '@mui/material/List';
+import CountUp from 'react-countup';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
@@ -20,12 +20,25 @@ import ParkOutlinedIcon from '@mui/icons-material/ParkOutlined';
 import Mapcard from "../Mapcard";
 import { DeleteTwoTone } from "@mui/icons-material";
 import UploadPlace from "../UploadPlace";
+import { useNavigate } from "react-router-dom";
+
+import trees from '../assets/treecount1.svg'
+import palm from '../assets/palm1.svg'
+import climbers from '../assets/climbers1.svg'
+import creepers from '../assets/creepers1.svg'
+import flowers from '../assets/flowering-shrubs1.svg'
+import foliage from '../assets/foliageshrubs1.svg'
+import medicine from '../assets/medicinal-plant1.svg'
+import indoorplants from '../assets/indoor-pants1.svg'
+import grasses from '../assets/grasses1.svg'
+import Countbtn from '../Countbtn.tsx'
+
 
 
 
 const DashHome = () => {
 
-
+  let navigate = useNavigate();
   const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
   const [treeList, setTreeList] = React.useState([])
   const [placesList, setPlacesList] = React.useState([])
@@ -149,11 +162,14 @@ const DashHome = () => {
                     <p style={{ margin: 0, fontSize: 16, color: '#fff', fontWeight: 400, textAlign: 'left' }}>Total datas uploaded</p>
                     <CountUp end={treeList.length} enableScrollSpy duration={5} style={{ fontSize: 46, fontWeight: 500, fontWeight: 800, color: '#fff', margin: 0 }} />
                     <button style={{ width: 120, height: 45, fontSize: 18, fontWeight: 500, backgroundColor: '#252525', color: '#fff', borderRadius: 12, marginTop: 16 }}> Upload </button>
+                    
                   </div>
 
                 </div>
 
-                <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'row', marginBottom: 20 }}>
+                <div style={{}}>
+
+                <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'row',marginBottom:20}}>
                   <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', width: 400 }}>
                     <Chip label="Today" variant="outlined" onClick={handleClick} style={{ borderColor: '#ffff', color: '#fff', textAlign: 'center' }} />
                     <Chip label="This week" variant="outlined" onClick={handleClick} style={{ borderColor: '#ffff', color: '#fff', textAlign: 'center' }} />
@@ -162,6 +178,8 @@ const DashHome = () => {
                   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <p style={{ margin: 0, fontWeight: 500, color: '#829D94' }}>6000</p>
                   </div>
+                </div>
+
                 </div>
 
 
@@ -195,7 +213,8 @@ const DashHome = () => {
                       <p style={{ margin: 0, fontSize: 16, fontWeight: 400, textAlign: 'center', lineHeight: 1.2, color: '#fff' }}>
                         You have  <br />{commentList.length}<br />feedback
                       </p>
-                      <button style={{ width: 100, height: 35, fontSize: 16, fontWeight: 500, backgroundColor: '#252525', color: '#ffff', borderRadius: 8, marginTop: 16 }}> View </button>
+                      <button onClick={() => {
+            navigate("/admin/Feedbacks") }} style={{ width: 100, height: 35, fontSize: 16, fontWeight: 500, backgroundColor: '#252525', color: '#ffff', borderRadius: 8, marginTop: 16 }}> View </button>
 
 
                     </div>
@@ -264,18 +283,118 @@ const DashHome = () => {
         </div>
 
       </div>
+      <div className="countings" style={{ marginTop:32,marginBottom:50}}>
+
+           <p style={{ fontSize: 24, fontWeight: 600, color: '#656565', margin:0,marginLeft:36}}>Total Counts</p>
+           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+            <div className="count-admin-container" style={{display:'flex',justifyContent:'space-evenly',flexWrap:'wrap',alignItems:'center',width:'90%'}}>
+              
+              <div className="upload-count-card" style={{width:280,height:140,backgroundColor:'#89B8A3',borderRadius:16,display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:20}}>    
+                <img src={trees} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
+                <div style={{marginRight:16}}>
+                  {/* <p style={{margin:0,fontSize}}>67678</p> */}
+                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
+                  {/* <button style={{background:'#252525',color:'#ffff',paddingRight:10,paddingLeft:10,paddingTop:8,paddingBottom:8,borderRadius:8,marginTop:10}}>Upload</button>   */}
+                  <Countbtn/>
+                </div>  
+              </div>
+
+              <div className="upload-count-card" style={{width:280,height:140,backgroundColor:'#89B8A3',borderRadius:16,display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:20}}>    
+                <img src={palm} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
+                <div style={{marginRight:16}}>
+                  {/* <p style={{margin:0,fontSize}}>67678</p> */}
+                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
+                  <Countbtn/>               
+                   </div>  
+              </div>
+
+              <div className="upload-count-card" style={{width:280,height:140,backgroundColor:'#89B8A3',borderRadius:16,display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:20}}>    
+                <img src={climbers} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
+                <div style={{marginRight:16}}>
+                  {/* <p style={{margin:0,fontSize}}>67678</p> */}
+                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
+                  <Countbtn/>  
+                </div>  
+              </div>
+
+              <div className="upload-count-card" style={{width:280,height:140,backgroundColor:'#89B8A3',borderRadius:16,display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:20}}>    
+                <img src={creepers} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
+                <div style={{marginRight:16}}>
+                  {/* <p style={{margin:0,fontSize}}>67678</p> */}
+                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
+                  <Countbtn/>  
+                </div>  
+              </div>
+
+              <div className="upload-count-card" style={{width:280,height:140,backgroundColor:'#89B8A3',borderRadius:16,display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:20}}>    
+                <img src={flowers} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
+                <div style={{marginRight:16}}>
+                  {/* <p style={{margin:0,fontSize}}>67678</p> */}
+                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
+                  <Countbtn/>  
+                </div>  
+              </div>
+
+              <div className="upload-count-card" style={{width:280,height:140,backgroundColor:'#89B8A3',borderRadius:16,display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:20}}>    
+                <img src={foliage} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
+                <div style={{marginRight:16}}>
+                  {/* <p style={{margin:0,fontSize}}>67678</p> */}
+                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
+                  <Countbtn/>  
+                </div>  
+              </div>
+
+              <div className="upload-count-card" style={{width:280,height:140,backgroundColor:'#89B8A3',borderRadius:16,display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:20}}>    
+                <img src={medicine} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
+                <div style={{marginRight:16}}>
+                  {/* <p style={{margin:0,fontSize}}>67678</p> */}
+                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
+                  <Countbtn/>  
+                </div>  
+              </div>
+
+              <div className="upload-count-card" style={{width:280,height:140,backgroundColor:'#89B8A3',borderRadius:16,display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:20}}>    
+                <img src={indoorplants} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
+                <div style={{marginRight:16}}>
+                  {/* <p style={{margin:0,fontSize}}>67678</p> */}
+                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
+                  <Countbtn/>  
+                </div>  
+              </div>
+
+              <div className="upload-count-card" style={{width:280,height:140,backgroundColor:'#89B8A3',borderRadius:16,display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:20}}>    
+                <img src={grasses} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
+                <div style={{marginRight:16}}>
+                  {/* <p style={{margin:0,fontSize}}>67678</p> */}
+                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
+                  <Countbtn/> 
+                </div>  
+              </div>
+              
+              
+            </div>
+            </div>
+           </div>
 
       <div style={{ backgroundColor: '#EEEE', paddingBottom: 72 }}>
-
         {treeList.length !== 0 &&
           <TreeTable treeList={treeList} />
         }
       </div>
 
-      <div className="hotspot-container" style={{ paddingLeft: 20, paddingRight: 20 }}>
+      <div className="hotspot-container" style={{ paddingLeft: 20, paddingRight: 20,height:800 }}>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 32 }}>
           <p style={{ fontSize: 24, fontWeight: 600, color: '#656565', margin: 0 }}>Hotspot Datas</p>
-          <Button style={{ marginRight: 20 }}>hi</Button>
+          <UploadPlace values={nameList} setPlacesList={setPlacesList} />
         </div>
 
         <div style={{ width: "100%", display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -287,7 +406,7 @@ const DashHome = () => {
           })}
 
         </div>
-        <UploadPlace values={nameList} setPlacesList={setPlacesList} />
+        
 
       </div>
 

@@ -28,7 +28,7 @@ const Card = (props) => {
             <img src={Woodie} style={{ width: 55, height: 55, position: 'absolute', marginTop: 150, paddingLeft: "40%" }} />
 
             <div className="imgcontainer" style={{ width: 250, height: 74 }}>
-                <img src={"https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(props.data.name) + ".png"} style={{ width: 250, borderTopLeftRadius: 20, borderTopRightRadius: 20, height:170, resize:'cover' }} />
+                <img src={"https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(props.data.name) + ".png"} style={{ width: 250, borderTopLeftRadius: 20, borderTopRightRadius: 20, height:170, objectFit:'contain'}} />
             </div>
 
             <p style={{ fontSize: 18, color: "#252525", fontWeight: 500, position: 'absolute', top: "64%", marginLeft: 16 }}>{props.data.name}</p>

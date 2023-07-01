@@ -57,7 +57,8 @@ export default function CreationPage(props) {
                 order: order,
                 genus: genus,
                 species: species,
-                modaluri: modalUri
+                modaluri: modalUri,
+                type: type
             }
             const treeRef = doc(db, 'trees', name);
             await setDoc(treeRef, userObj, { merge: true });
@@ -272,7 +273,7 @@ export default function CreationPage(props) {
                         which may lead to server down.
                     </Typography>
 
-                    <div className="input-container" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'left' }}>
+                    <div className="input-container" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
 
                         <div className="inputRow-1">
 
@@ -320,7 +321,7 @@ export default function CreationPage(props) {
                             </div>
                         </div>
 
-                        <div className="inputRow-2">
+                        <div className="inputRow-2" style={{marginLeft: 24}}>
 
                             <div style={{ marginTop: 20, width: 300 }}>
                                 <FormControl>
@@ -360,7 +361,7 @@ export default function CreationPage(props) {
 
                         </div>
 
-                        <div className="inputRow-3">
+                        <div className="inputRow-3" style={{marginLeft: 24}}>
 
                             <div style={{ marginTop: 20, width: 300 }}>
                                 <FormControl>
@@ -469,14 +470,14 @@ export default function CreationPage(props) {
 
                                         <MenuItem value="">
                                         </MenuItem>
-                                        <MenuItem value={10}>Trees</MenuItem>
-                                        <MenuItem value={20}>Palm</MenuItem>
-                                        <MenuItem value={30}>Climbers</MenuItem>
-                                        <MenuItem value={40}>Creepers</MenuItem>
-                                        <MenuItem value={50}>Flowering Shurbs</MenuItem>
-                                        <MenuItem value={60}>Foliage Shurbs</MenuItem>
-                                        <MenuItem value={70}>Medicinal Plants</MenuItem>
-                                        <MenuItem value={80}>Indoor Plants</MenuItem>
+                                        <MenuItem value="Trees">Trees</MenuItem>
+                                        <MenuItem value="Palm">Palm</MenuItem>
+                                        <MenuItem value="Climbers">Climbers</MenuItem>
+                                        <MenuItem value="Creepers">Creepers</MenuItem>
+                                        <MenuItem value="Flowering Shurbs">Flowering Shurbs</MenuItem>
+                                        <MenuItem value="Foliage Shurbs">Foliage Shurbs</MenuItem>
+                                        <MenuItem value="Medicinal Plants">Medicinal Plants</MenuItem>
+                                        <MenuItem value="Indoor Plants">Indoor Plants</MenuItem>
 
 
                                     </Select>

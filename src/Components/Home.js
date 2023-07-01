@@ -68,6 +68,7 @@ const Home = () => {
             }
         });
             setTreeList(treeTemp)
+            console.log(temp)
         
         setPaginationTreeList(treeTemp)
         setStaticList(temp)

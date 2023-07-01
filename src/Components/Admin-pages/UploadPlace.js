@@ -17,6 +17,7 @@ import { db } from "../../FirebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import axios from 'axios';
 
 export default function UploadPlace(props) {
 
@@ -153,16 +154,16 @@ export default function UploadPlace(props) {
             fontWeight="lg"
             mb={1}
           >
-            Upload new Place
+            Upload Hotspot
           </Typography>
           <Typography id="modal-desc" textColor="text.tertiary">
-            Lorem Ipsum
+            Upload the Title of the hotspot and the nearby greeneries
 
           </Typography>
 
           <div style={{ marginTop: 20, width: 600 }}>
             <FormControl>
-              <FormLabel>Title</FormLabel>
+              <FormLabel>Block</FormLabel>
               <Textarea value={state.title} onChange={(e) => { setState(current=> ({...current, title: e.target.value}))}} placeholder="Enter Title" minRows={1} maxRows={1} />
               {/* <FormHelperText>This is a helper text.</FormHelperText> */}
             </FormControl>
@@ -170,7 +171,7 @@ export default function UploadPlace(props) {
 
           <div style={{ marginTop: 20, width: 600 }}>
             <FormControl>
-              <FormLabel>Location</FormLabel>
+              <FormLabel>Hotspot name</FormLabel>
               <Textarea value={state.location} onChange={(e) => { setState(current=> ({...current, location: e.target.value}))}} placeholder="Enter Location" minRows={1} maxRows={1} />
               {/* <FormHelperText>This is a helper text.</FormHelperText> */}
             </FormControl>
@@ -184,6 +185,7 @@ export default function UploadPlace(props) {
             displayValue="name" 
           />
           <input
+             
             accept="image/*"
             className=""
             id="raised-button-file"

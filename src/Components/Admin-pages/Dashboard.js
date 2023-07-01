@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // PAGES
 import Uploaded from "./Pages/Uploaded";
 import DashHome from "./Pages/DashHome";
+import Feedbacks from "./Pages/Feedbacks";
 import Create from "./Pages/Create";
 import { auth, db } from "../../FirebaseConfig";
 import { doc, getDoc, collection, getDocs } from "firebase/firestore";
@@ -41,6 +42,8 @@ const Dashboard = () => {
       <AdminNav />
       <Routes>
         <Route exact path="/" element={<DashHome />} />
+        <Route path="/Feedbacks" element={<Feedbacks />} />
+
         <Route path="/products" element={<Uploaded />} />
         <Route path="/reports" element={<Create />} />
       </Routes>

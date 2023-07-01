@@ -5,7 +5,7 @@ import Imageviewer from './Components/Imageviewer';
 import Map from './Components/Map';
 import Verification from './Components/Admin-pages/Verification';
 import Dashboard from './Components/Admin-pages/Dashboard';
-import Feedbacks from './Components/Admin-pages/Feedbacks';
+import Feedbacks from './Components/Admin-pages/Pages/Feedbacks';
 
 import {
   BrowserRouter as Router,
@@ -32,7 +32,7 @@ function App() {
         <Route path="/Greenmap" element={<InteractiveMap/>} />
         <Route path="/admin" element={<Verification/>} />
         <Route path="/admin/Dashboard" element={<Dashboard/>} />
-        <Route path="/Feedbacks" element={<Feedbacks/>} />
+        <Route path="admin/Feedbacks" element={<Feedbacks/>} />
         
 
       
