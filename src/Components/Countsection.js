@@ -9,14 +9,41 @@ import foliage from '../Components/assets/foliageshrubs.svg'
 import medicine from '../Components/assets/medicinal-plant.svg'
 import indoorplants from '../Components/assets/indoor-pants.svg'
 import grasses from '../Components/assets/grasses.svg'
+import { db } from "../FirebaseConfig";
 
-
+import { useEffect, useState } from "react";
+import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 
 import CountUp from 'react-countup';
+import { register } from "react-scroll/modules/mixins/scroller";
 
 
 
 const Countsection=()=>{
+  const [countState, setCountState] = useState({})
+  let treeRegister = {}
+
+  async function fetchTrees() {
+
+    const querySnapshot = await getDocs(collection(db, "trees"));
+    querySnapshot.forEach((doc) => {
+      const data = doc.data()
+      if(data.type === "Trees"){
+        console.log(data)
+      }
+     
+
+        setCountState(current => ({...current, [data.type]: current[data.type] && treeRegister[data.name] !== true ? current[data.type] + 1 : 1 }))
+        treeRegister[data.name] = true
+
+    });
+}
+
+
+useEffect(() => {
+    fetchTrees()
+}, [])
+
 
     CountUp({
         
@@ -53,7 +80,7 @@ const Countsection=()=>{
                     <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}> 
                         <img src ={trees} style={{width:80,height:80}}/>
                       <div style={{alignItems:'center',justifyContent:'center',display:'flex'}}>
-                       <CountUp end={2300} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
+                       <CountUp end={countState.Trees} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
                       </div>
                       <p style={{fontSize:16,fontWeight:400,textAlign:'center',position:'relative',top:-16}}>Trees</p>
                     </div>
@@ -63,7 +90,7 @@ const Countsection=()=>{
                     <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}> 
                         <img src ={palm} style={{width:80,height:80}}/>
                       <div style={{alignItems:'center',justifyContent:'center',display:'flex'}}>
-                       <CountUp end={2300} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
+                       <CountUp end={countState.Palms} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
                       </div>
                       <p style={{fontSize:16,fontWeight:400,textAlign:'center',position:'relative',top:-16}}>Palms</p>
                     </div>
@@ -73,7 +100,7 @@ const Countsection=()=>{
                     <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}> 
                         <img src ={climbers} style={{width:80,height:80}}/>
                       <div style={{alignItems:'center',justifyContent:'center',display:'flex'}}>
-                       <CountUp end={2300} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
+                       <CountUp end={countState.Climbers} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
                       </div>
                       <p style={{fontSize:16,fontWeight:400,textAlign:'center',position:'relative',top:-16}}>Climbers</p>
                     </div>
@@ -83,7 +110,7 @@ const Countsection=()=>{
                     <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}> 
                         <img src ={creepers} style={{width:80,height:80}}/>
                       <div style={{alignItems:'center',justifyContent:'center',display:'flex'}}>
-                       <CountUp end={2300} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
+                       <CountUp end={countState.Creepers} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
                       </div>
                       <p style={{fontSize:16,fontWeight:400,textAlign:'center',position:'relative',top:-16}}>Creepers</p>
                     </div>
@@ -93,7 +120,7 @@ const Countsection=()=>{
                     <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}> 
                         <img src ={flowers} style={{width:80,height:80}}/>
                       <div style={{alignItems:'center',justifyContent:'center',display:'flex'}}>
-                       <CountUp end={2300} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
+                       <CountUp end={countState['Flowering Shrubs']} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
                       </div>
                       <p style={{fontSize:16,fontWeight:400,textAlign:'center',position:'relative',top:-16}}>Flowering Shrubs</p>
                     </div>
@@ -103,7 +130,7 @@ const Countsection=()=>{
                     <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}> 
                         <img src ={foliage} style={{width:80,height:80}}/>
                       <div style={{alignItems:'center',justifyContent:'center',display:'flex'}}>
-                       <CountUp end={2300} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
+                       <CountUp end={countState['Foliage Shrubs']} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
                       </div>
                       <p style={{fontSize:16,fontWeight:400,textAlign:'center',position:'relative',top:-16}}>Foliage Shrubs</p>
                     </div>
@@ -113,7 +140,7 @@ const Countsection=()=>{
                     <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}> 
                         <img src ={medicine} style={{width:80,height:80}}/>
                       <div style={{alignItems:'center',justifyContent:'center',display:'flex'}}>
-                       <CountUp end={2300} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
+                       <CountUp end={countState['Medicinal plants']} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
                       </div>
                       <p style={{fontSize:16,fontWeight:400,textAlign:'center',position:'relative',top:-16}}>Medicinal Plants</p>
                     </div>
@@ -123,13 +150,13 @@ const Countsection=()=>{
                     <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}> 
                         <img src ={indoorplants} style={{width:80,height:80}}/>
                       <div style={{alignItems:'center',justifyContent:'center',display:'flex'}}>
-                       <CountUp end={2300} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
+                       <CountUp end={countState['Indoor plants']} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
                       </div>
                       <p style={{fontSize:16,fontWeight:400,textAlign:'center',position:'relative',top:-16}}>Indoor Plants</p>
                     </div>
                  </div>
 
-                 <div className={'countcard'} style={{width:140,height:160,backgroundColor:'white',borderRadius:12,alignItems:'center',marginTop:20}}>
+                 {/* <div className={'countcard'} style={{width:140,height:160,backgroundColor:'white',borderRadius:12,alignItems:'center',marginTop:20}}>
                     <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}> 
                         <img src ={grasses} style={{width:80,height:80}}/>
                       <div style={{alignItems:'center',justifyContent:'center',display:'flex'}}>
@@ -137,7 +164,7 @@ const Countsection=()=>{
                       </div>
                       <p style={{fontSize:16,fontWeight:400,textAlign:'center',position:'relative',top:-16}}>Grasses</p>
                     </div>
-                 </div>
+                 </div> */}
 
                 
                  

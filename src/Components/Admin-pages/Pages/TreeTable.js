@@ -10,7 +10,7 @@ import { Button, TablePagination } from "@mui/material";
 import Paper from "@material-ui/core/Paper";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../../FirebaseConfig.js";
-import CreationPage from "../CreationPage.tsx";
+import CreationPage from "../CreationPage.js";
 import Search from '../assets/Search.svg'
 import { Container, InputAdornment, TextField, InputBase } from "@mui/material";
 // import SearchIcon from "@mui/icons-material/Search";

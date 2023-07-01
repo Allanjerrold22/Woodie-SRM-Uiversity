@@ -36,6 +36,7 @@ const Home = () => {
     const [staticList, setStaticList] = useState([])
     const [paginationTreeList, setPaginationTreeList] = useState([]) 
     const [page, setPage] = useState(1)
+    const [countState, setCountState] = useState({})
 
     const [scrollTop, setScrollTop] = React.useState(false);
     React.useEffect(() => {
@@ -61,7 +62,8 @@ const Home = () => {
         querySnapshot.forEach((doc) => {
             const data = doc.data()
             temp.push(data)
-            if (data.type !== "Trees") {
+            // setCountState({...countState, [data.type]: countState[data.type] + 1 })
+            if (data.type === "Trees") {
                 treeTemp.push(data)
             }
         });
@@ -107,7 +109,7 @@ const Home = () => {
                     setStackIndex(0)
                     setPage(1)
                     setPaginationTreeList(staticList.filter((tree) => tree.type === "Trees"))
-                    setTreeList(staticList.filter((tree) => tree.type !== "Trees"))
+                    setTreeList(staticList.filter((tree) => tree.type === "Trees"))
                 }} variant={stackIndex === 0 ? "contained" : "outlined"} style={stackIndex === 0 ? styles.selected : styles.unSelected}>Trees</Button>
                 <Button onClick={() => {
                     setStackIndex(1)

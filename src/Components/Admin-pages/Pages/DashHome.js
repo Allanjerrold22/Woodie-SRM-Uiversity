@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Woodie from '../assets/woodie.png'
 import Tree from '../assets/tree-icon.svg'
 import QR from '../assets/QR.svg'
@@ -28,8 +28,37 @@ const DashHome = () => {
 
   const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
   const [treeList, setTreeList] = React.useState([])
+  const [placesList, setPlacesList] = React.useState([])
+
   const [commentList, setCommentList] = React.useState([])
   const [nameList, setNameList] = React.useState([])
+  const [topTrees, setSortable] = useState([["",""],["",""],["",""],["",""]])
+
+  async function fetchTopTrees() {
+    let sortable = [];
+    const docRef = doc(db, "stats", "scanned");
+    getDoc(docRef).then((doc) => {
+      const data = doc.data()
+      for (var ele in data) {
+        sortable.push([ele, data[ele]]);
+      }
+
+      sortable.sort(function (a, b) {
+        return b[1] - a[1];
+      });
+
+      setSortable(sortable)
+    })
+  }
+
+  async function fetchPlaces() {
+    let temp = []
+    const querySnapshot = await getDocs(collection(db, "places"));
+    querySnapshot.forEach((doc) => {
+      temp.push(doc.data())
+    });
+    setPlacesList(temp)
+  }
 
   async function fetchTrees() {
     let temp = []
@@ -56,6 +85,8 @@ const DashHome = () => {
   React.useEffect(() => {
     fetchComments()
     fetchTrees()
+    fetchTopTrees()
+    fetchPlaces()
   }, [])
 
   const handleClick = () => {
@@ -201,18 +232,18 @@ const DashHome = () => {
                   <Divider style={{ backgroundColor: '#fff', borderWidth: 1 }} />
                   <List sx={style} component="nav" aria-label="mailbox folders">
                     <ListItem button>
-                      <ListItemText primary="Pheltaphorum" style={{ color: '#fff' }} />
+                      <ListItemText primary={topTrees[0][0] + " - " + topTrees[0][1]} style={{ color: '#fff' }} />
                     </ListItem>
                     <Divider />
                     <ListItem button divider>
-                      <ListItemText primary="Banyan" style={{ color: '#fff' }} />
+                      <ListItemText primary={topTrees[1][0] + " - " + topTrees[1][1]} style={{ color: '#fff' }} />
                     </ListItem>
                     <ListItem button>
-                      <ListItemText primary="Coconut" style={{ color: '#fff' }} />
+                      <ListItemText primary={topTrees[2][0] + " - " + topTrees[2][1]} style={{ color: '#fff' }} />
                     </ListItem>
                     <Divider light />
                     <ListItem button>
-                      <ListItemText primary="Amla" style={{ color: '#fff' }} />
+                      <ListItemText primary={topTrees[3][0] + " - " + topTrees[3][1]} style={{ color: '#fff' }} />
                     </ListItem>
                   </List>
 
@@ -241,22 +272,22 @@ const DashHome = () => {
         }
       </div>
 
-      <div className="hotspot-container" style={{paddingLeft:20,paddingRight:20}}>
-      <div style={{display:'flex',flexDirection:'row', justifyContent:'space-between',alignItems:'center',paddingTop:32}}>
-      <p style={{ fontSize: 24, fontWeight: 600, color: '#656565',margin:0}}>Hotspot Datas</p>
-      <Button style={{marginRight:20}}>hi</Button>
-      </div>
+      <div className="hotspot-container" style={{ paddingLeft: 20, paddingRight: 20 }}>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 32 }}>
+          <p style={{ fontSize: 24, fontWeight: 600, color: '#656565', margin: 0 }}>Hotspot Datas</p>
+          <Button style={{ marginRight: 20 }}>hi</Button>
+        </div>
 
-      <div style={{ width: "100%",display: 'flex', justifyContent: 'space-evenly', alignItems: 'center',flexWrap:'wrap'}}>
+        <div style={{ width: "100%", display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', flexWrap: 'wrap' }}>
 
-        <Mapcard/>
-        <Mapcard/>
-        <Mapcard/>
-        <Mapcard/>
-        <Mapcard/>
-       
-      </div>
-      <UploadPlace/>
+          {placesList.map((ele,index)=>{
+            return(
+              <Mapcard item={ele} setPlacesList={setPlacesList}/>
+            )
+          })}
+
+        </div>
+        <UploadPlace values={nameList} setPlacesList={setPlacesList} />
 
       </div>
 
