@@ -32,14 +32,16 @@ export default function UploadPlace(props) {
         method: 'post',
         url: 'https://biodiversity.srmist.edu.in/api/upload',
         headers: {
-            'name': state.title + "_Place",
+            'name': state.title + "Place",
         },
         data: data
     };
     try {
 
         await axios.request(config)
+        setState({})
         handleOpen("Success")
+
 
     } catch (e) {
         console.error(e)
@@ -94,10 +96,10 @@ export default function UploadPlace(props) {
         const userObj = {
             title: state.title,
             location: state.location,
-            tags: temp
+            tags: temp,
+            ext: image.name.split(".").pop()
         }
         const treeRef = doc(db, 'places', state.title);
-        console.log(selectedValues);
        await setDoc(treeRef, userObj, { merge: true });
        await uploadImage()
        props.setPlacesList(oldArray => [...oldArray, userObj]);

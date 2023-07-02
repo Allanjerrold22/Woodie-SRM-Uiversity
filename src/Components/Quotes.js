@@ -15,11 +15,35 @@ const slide_img = [
     "https://swiperjs.com/demos/images/nature-3.jpg",
     "https://swiperjs.com/demos/images/nature-4.jpg",
     "https://swiperjs.com/demos/images/nature-5.jpg",
-    "https://swiperjs.com/demos/images/nature-6.jpg",
-    "https://swiperjs.com/demos/images/nature-7.jpg",
-    "https://swiperjs.com/demos/images/nature-8.jpg",
-    "https://swiperjs.com/demos/images/nature-9.jpg",
   ];
+
+const content = [
+  {
+    name: "Tabrez",
+    year: "3rd Year",
+    quote: "Lorem Ipsum"
+  },
+  {
+    name: "Allan",
+    year: "3rd Year",
+    quote: "Lorem Ipsum"
+  },
+  {
+    name: "Vaeshni",
+    year: "3rd Year",
+    quote: "Lorem Ipsum"
+  },
+  {
+    name: "Kongu",
+    year: "3rd Year",
+    quote: "Lorem Ipsum"
+  },
+  {
+    name: "Prabhu",
+    year: "3rd Year",
+    quote: "Lorem Ipsum"
+  }
+]
 
 const Quotes=()=>{
     return(
@@ -50,11 +74,11 @@ const Quotes=()=>{
                <div className="quotebox" style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
                 <div className="quotes" style={{width:320,height:320,backgroundColor:'#EEEE',borderRadius:2}}>
                     <img src={Quotesimg} style={{width:48,height:48,position:'relative',top:6,left:6}}/>
-                    <p style={{textAlign:'center',margin:20 ,fontSize:16,marginTop:32}}> A morning walk to the class with the blooming flowers across the paths and the pleasant breeze from the trees gives me enegry for the day</p>
+                    <p style={{textAlign:'center',margin:20 ,fontSize:16,marginTop:32}}>{content[i].quote}</p>
                     <div style={{display:'flex',justifyContent:'space-between'}}>
 
                     <img src={Allan} style={{width:55,height:55,marginLeft:20}}/>    
-                    <p style={{textAlign:'right',marginRight:16 ,color:'#656565'}}>-Allan Jerrold <br/> 3rd B.tech</p>
+                    <p style={{textAlign:'right',marginRight:16 ,color:'#656565'}}>{"-" + content[i].name}<br/>{content[i].year}</p>
                     
 
 

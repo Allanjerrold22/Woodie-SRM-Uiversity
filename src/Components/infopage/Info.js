@@ -33,13 +33,25 @@ const Info = ()=>{
   
 const location = useLocation()
 const [searchParams, setSearchParams] = useSearchParams();
+const [tree, setTree] = useState({})
 
-const src = [
-  "https://images.unsplash.com/reserve/bOvf94dPRxWu0u3QsPjF_tree.jpg?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1176&q=80",
-  "https://images.unsplash.com/photo-1437964706703-40b90bdf563b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-  "https://images.unsplash.com/photo-1469827160215-9d29e96e72f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1744&q=80",
-  "https://images.unsplash.com/photo-1429704658776-3d38c9990511?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1679&q=80"
-]
+const [src,setSrc] = useState([
+  ("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(tree.name) + "." + encodeURIComponent(tree.ext1)).toString().replace("jpg","jpeg"),
+  ("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(tree.name) + "2." + encodeURIComponent(tree.ext2)).toString().replace("jpg","jpeg"),
+  ("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(tree.name) + "3." + encodeURIComponent(tree.ext3)).toString().replace("jpg","jpeg"),
+  ("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(tree.name) + "4." + encodeURIComponent(tree.ext4)).toString().replace("jpg","jpeg"),
+])
+
+useEffect(()=>{
+  console.log(  ("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(tree.name) + "." + encodeURIComponent(tree.ext1)).toString().replace("jpg","jpeg"),
+  )
+  setSrc([
+    ("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(tree.name) + "." + encodeURIComponent(tree.ext1)).toString().replace("jpg","jpeg"),
+    ("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(tree.name) + "2." + encodeURIComponent(tree.ext2)).toString().replace("jpg","jpeg"),
+    ("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(tree.name) + "3." + encodeURIComponent(tree.ext3)).toString().replace("jpg","jpeg"),
+    ("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(tree.name) + "4." + encodeURIComponent(tree.ext4)).toString().replace("jpg","jpeg"),
+  ])
+},[tree])
   
   const myRef = React.createRef();
 
@@ -52,7 +64,6 @@ const src = [
     }
     images[index].className = "active";
   };
-  const [tree, setTree] = useState({})
 
 
   const increaseFieldByOne = async (fieldToUpdate) => {

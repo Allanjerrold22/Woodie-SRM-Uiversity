@@ -22,7 +22,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
 
-
   React.useEffect(()=>{
     const unsub = onAuthStateChanged(auth,user=>{
         if(user === null){
@@ -41,7 +40,7 @@ const Dashboard = () => {
 
       <AdminNav />
       <Routes>
-        <Route exact path="/" element={<DashHome />} />
+        <Route exact path="/" element={<DashHome />} state  />
         <Route path="/Feedbacks" element={<Feedbacks />} />
 
         <Route path="/products" element={<Uploaded />} />
