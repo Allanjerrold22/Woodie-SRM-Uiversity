@@ -260,7 +260,7 @@ export default function CreationPage(props) {
                 aria-describedby="modal-desc"
                 open={open}
                 onClose={() => setOpen(false)}
-                sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+                sx={{ display: "flex", justifyContent: "center", alignItems: "center"}}
             >
                 <Sheet
                     variant="outlined"
@@ -302,7 +302,7 @@ export default function CreationPage(props) {
                         which may lead to server down.
                     </Typography>
 
-                    <div className="input-container" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
+                    <div className="input-container" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
 
                         <div className="inputRow-1">
 
@@ -399,6 +399,15 @@ export default function CreationPage(props) {
                                     {/* <FormHelperText>This is a helper text.</FormHelperText> */}
                                 </FormControl>
                             </div>
+
+                            <div style={{ marginTop: 20, width: 300 }}>
+                                <FormControl>
+                                    <FormLabel>Order</FormLabel>
+                                    <Textarea value={genus} onChange={(e) => { setGenus(e.target.value) }} placeholder="" minRows={1} maxRows={1} />
+                                    {/* <FormHelperText>This is a helper text.</FormHelperText> */}
+                                </FormControl>
+                            </div>
+
                             <div style={{ marginTop: 20, width: 300 }}>
                                 <FormControl>
                                     <FormLabel>Species</FormLabel>
@@ -459,7 +468,7 @@ export default function CreationPage(props) {
                                 type="file"
                             />
                             <label htmlFor="raised-button-file">
-                                <Button onClick={() => { uploadImages() }} style={{ background: '#252525', color: '#fff', marginTop: 16 }}>
+                                <Button onClick={() => { uploadImages() }}variant="outlined"style={{color: '#252525', marginTop: 16,borderColor:'#252525' }}>
                                     Upload
                                 </Button>
                             </label>
@@ -480,20 +489,24 @@ export default function CreationPage(props) {
                                 type="file"
                             />
                             <label htmlFor="raised-button-file">
-                                <Button onClick={() => { uploadPano() }} style={{ background: '#252525', color: '#fff', marginTop: 16 }}>
+                                <Button onClick={() => { uploadPano() }} variant="outlined" style={{color: '#252525', marginTop: 16,borderColor:'#252525' }}>
                                     Upload
                                 </Button>
                             </label>
 
                             <div style={{ marginTop: 20 }}>
-                                <FormControl sx={{ minWidth: 120 }} >
+                                <FormControl sx={{ width: 200 }} >
 
-                                    <InputLabel id="demo-select-small-label">Type</InputLabel>
+                                    <InputLabel  id="demo-select-small-label">Type</InputLabel>
                                     <Select
                                         labelId="demo-select-small-label"
                                         id="demo-select-small"
                                         value={type}
-                                        label="Type"
+                                        size="small"
+                                        label="Age"
+                                        
+
+                                        
                                         onChange={handleChange}
                                     >
 
