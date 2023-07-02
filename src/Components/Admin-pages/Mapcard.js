@@ -21,7 +21,7 @@ const Mapcard = ({ item, setPlacesList }) => {
   return (
     <div>
       <div className="mapadmincard" style={{ width: 330, height: 300, borderRadius: 20, backgroundColor: '#ffff', marginTop: 32 }}>
-        <img src={("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(item.title) + "." + encodeURIComponent(item.ext)).toString().replace("jpg", "jpeg")} style={{ width: 330, height: 180, borderTopLeftRadius: 20, borderTopRightRadius: 20, objectFit: 'cover' }} />
+        <img src={("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(item.title) + "Place." + encodeURIComponent(item.ext)).toString().replace("jpg", "jpeg")} style={{ width: 330, height: 180, borderTopLeftRadius: 20, borderTopRightRadius: 20, objectFit: 'cover' }} />
         <p style={{ fontSize: 12, fontWeight: 400, margin: 0, color: '#656565', textAlign: 'center' }}>{item.title}</p>
         <p style={{ fontSize: 18, fontWeight: 600, margin: 0, color: '#252525', textAlign: 'center' }}>{item.location}</p>
 
