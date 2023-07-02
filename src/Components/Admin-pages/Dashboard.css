@@ -1,6 +1,8 @@
 :root {
   --navBg: #060b26;
 }
+.mockup{
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(137,184,163,1) 100%);}
 .menu{
   padding:10px;
   border-radius:10px;

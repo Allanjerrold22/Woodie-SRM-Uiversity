@@ -10,7 +10,7 @@ import medicine from '../Components/assets/medicinal-plant.svg'
 import indoorplants from '../Components/assets/indoor-pants.svg'
 import grasses from '../Components/assets/grasses.svg'
 import { db } from "../FirebaseConfig";
-import Allan from "./assets/Allan.png"
+import Countcover from "./assets/counttree.jpg"
 
 import { useEffect, useState } from "react";
 import { doc, getDoc, collection, getDocs } from "firebase/firestore";
@@ -59,7 +59,7 @@ useEffect(() => {
             
 
             <div  style={{ width: "100%",height:800 ,
-              backgroundImage: "url(/counttree.jpg)",
+              backgroundImage:  `url(${Countcover})`,
               backgroundSize: 'cover', 
               backgroundPosition: 'center center',
               backgroundRepeat: 'no-repeat',

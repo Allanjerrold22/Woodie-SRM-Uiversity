@@ -7,6 +7,7 @@ import { useState } from 'react'
 import '../App.css'
 import { db } from "../FirebaseConfig";
 import { doc, setDoc, addDoc, collection } from "firebase/firestore";
+import Contactcover from './assets/contactbg.JPG'
 
 const Contact = () => {
 
@@ -51,7 +52,7 @@ const Contact = () => {
 
             <div className="feedback-bg" style={{
                 width: "100%", height: 640,
-                backgroundImage: "url(/contactbg.jpg)",
+                backgroundImage:  `url(${Contactcover})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center center',
                 backgroundRepeat: 'no-repeat'

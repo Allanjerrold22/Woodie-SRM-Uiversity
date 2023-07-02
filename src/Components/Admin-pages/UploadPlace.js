@@ -17,6 +17,7 @@ import { db } from "../../FirebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import mockup from '../Admin-pages/assets/mockup.mp4'
 import axios from 'axios';
 
 export default function UploadPlace(props) {
@@ -118,7 +119,7 @@ export default function UploadPlace(props) {
 
   return (
     <React.Fragment>
-      <Button variant="outlined" color="neutral" onClick={() => setOpen(true)}>
+      <Button variant="contained" color="neutral" style={{background:'#252525',color:'#ffff',paddingRight:20,paddingLeft:20}} onClick={() => setOpen(true)}>
         Upload
       </Button>
       <Modal
@@ -165,7 +166,7 @@ export default function UploadPlace(props) {
 
           <div style={{ marginTop: 20, width: 600 }}>
             <FormControl>
-              <FormLabel>Block</FormLabel>
+              <FormLabel>Department/Block/Campus</FormLabel>
               <Textarea value={state.title} onChange={(e) => { setState(current=> ({...current, title: e.target.value}))}} placeholder="Enter Title" minRows={1} maxRows={1} />
               {/* <FormHelperText>This is a helper text.</FormHelperText> */}
             </FormControl>
