@@ -33,7 +33,7 @@ const TextToSpeech = ({ text }) => {
     } else {
       console.log("=========");
       console.log(synth.getVoices());
-      utterance.voice = synth.getVoices()[10];
+      utterance.voice = synth.getVoices()[6];
       utterance.pitch = pitch;
       utterance.rate = 0.9;
       utterance.volume = volume;

@@ -8,9 +8,20 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import Stack from '@mui/joy/Stack';
 import Add from '@mui/icons-material/Add';
 import Typography from '@mui/joy/Typography';
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from '../../FirebaseConfig';
 
-export default function BasicModalDialog() {
+export default function BasicModalDialog(props) {
   const [open, setOpen] = React.useState<boolean>(false);
+  const [count, setCount] = React.useState(props.count)
+
+  function updateCount() {
+    const countRef = doc(db, "stats", "totalCount");
+    updateDoc(countRef, {[props.title]: count});
+    setOpen(false)
+  }
+  
+
   return (
     <React.Fragment>
       <Button
@@ -18,7 +29,7 @@ export default function BasicModalDialog() {
         color="neutral"
         // startDecorator={<Add/>}
         onClick={() => setOpen(true)}
-        style={{width:75,backgroundColor:'#1B4A35',color:'#fff'}}
+        style={{ width: 75, backgroundColor: '#1B4A35', color: '#fff' }}
       >
         Update
       </Button>
@@ -43,10 +54,10 @@ export default function BasicModalDialog() {
             <Stack spacing={2}>
               <FormControl>
                 <FormLabel>Count</FormLabel>
-                <Input autoFocus required />
+                <Input value={count ?? '0'} onChange={(e) => { setCount(e.target.value) }} autoFocus required />
               </FormControl>
-              
-              <Button type="submit">Update</Button>
+
+              <Button onClick={()=>{updateCount()}}>Update</Button>
             </Stack>
           </form>
         </ModalDialog>

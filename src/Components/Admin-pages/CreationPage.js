@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useState, useEffect } from 'react'
 import { db } from "../../FirebaseConfig";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 import axios from 'axios'
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
@@ -40,6 +40,11 @@ export default function CreationPage(props) {
 
     const [severity, setSeverity] = useState("info")
 
+    async function updateExt() {
+        const ref = doc(db, "trees", name);
+        updateDoc(ref, {ext1: image.name.split(".").pop(),ext2: image2.name.split(".").pop(),ext3: image3.name.split(".").pop(),ext4: image4.name.split(".").pop()});
+      }
+
     async function uploadTree() {
         try {
             const userObj = {
@@ -64,6 +69,27 @@ export default function CreationPage(props) {
             await setDoc(treeRef, userObj, { merge: true });
             props.setTreeList(oldArray => [...oldArray, userObj]);
             props.setRows(oldArray => [...oldArray, userObj]);
+
+            //
+            setName("")
+            setScientificName("")
+            setLocation("")
+            setCommonName("")
+            setTamilName("")
+            setFamily("")
+            setBotanicalDes("")
+            setUses("")
+            setKingdom("")
+            setPhylum("")
+            _setClass("")
+            setOrder("")
+            setGenus("")
+            setSpecies("")
+            setModalUri("")
+            setType("")
+
+            //
+
 
             handleOpen("Success")
 
@@ -93,6 +119,7 @@ export default function CreationPage(props) {
             setGenus(props.row.genus)
             setSpecies(props.row.species)
             setModalUri(props.row.modalUri)
+            setType(props.row.type)
         }
 
     }, [])
@@ -161,6 +188,8 @@ export default function CreationPage(props) {
             await axios.request(config2)
             await axios.request(config3)
             await axios.request(config4)
+            await updateExt()
+
             handleOpen("Success")
         } catch (e) {
             console.error(e)
@@ -391,6 +420,7 @@ export default function CreationPage(props) {
                                 multiple
                                 onChange={(event) => {
                                     if (!event.target.files) return
+                                    console.log(event.target.files[0].name.split('.').pop())
                                     setImage(event.target.files[0])
                                 }}
                                 type="file"

@@ -46,6 +46,7 @@ const DashHome = () => {
   const [commentList, setCommentList] = React.useState([])
   const [nameList, setNameList] = React.useState([])
   const [topTrees, setSortable] = useState([["",""],["",""],["",""],["",""]])
+  const [count, setCount] = useState({})
 
   async function fetchTopTrees() {
     let sortable = [];
@@ -61,6 +62,13 @@ const DashHome = () => {
       });
 
       setSortable(sortable)
+    })
+  }
+
+  async function fetchTotalCount() {
+    const docRef = doc(db, "stats", "totalCount");
+    getDoc(docRef).then((doc) => {
+      setCount(doc.data())
     })
   }
 
@@ -100,6 +108,7 @@ const DashHome = () => {
     fetchTrees()
     fetchTopTrees()
     fetchPlaces()
+    fetchTotalCount()
   }, [])
 
   const handleClick = () => {
@@ -293,10 +302,9 @@ const DashHome = () => {
                 <img src={trees} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
                 <div style={{marginRight:16}}>
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
-                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <CountUp end={count.Trees} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
-                  {/* <button style={{background:'#252525',color:'#ffff',paddingRight:10,paddingLeft:10,paddingTop:8,paddingBottom:8,borderRadius:8,marginTop:10}}>Upload</button>   */}
-                  <Countbtn/>
+                  <Countbtn title="Trees" count={count.Trees}/>
                 </div>  
               </div>
 
@@ -304,9 +312,9 @@ const DashHome = () => {
                 <img src={palm} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
                 <div style={{marginRight:16}}>
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
-                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
-                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
-                  <Countbtn/>               
+                  <CountUp end={count.Palms} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Palms</p>
+                  <Countbtn title="Palms" count={count.Palms}/>               
                    </div>  
               </div>
 
@@ -314,9 +322,9 @@ const DashHome = () => {
                 <img src={climbers} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
                 <div style={{marginRight:16}}>
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
-                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
-                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
-                  <Countbtn/>  
+                  <CountUp end={count.Climbers} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Climbers</p>
+                  <Countbtn title="Climbers" count={count.Climbers}/>  
                 </div>  
               </div>
 
@@ -324,9 +332,9 @@ const DashHome = () => {
                 <img src={creepers} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
                 <div style={{marginRight:16}}>
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
-                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
-                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
-                  <Countbtn/>  
+                  <CountUp end={count.Creepers} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Creepers</p>
+                  <Countbtn title="Creepers" count={count.Creepers}/>  
                 </div>  
               </div>
 
@@ -334,9 +342,9 @@ const DashHome = () => {
                 <img src={flowers} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
                 <div style={{marginRight:16}}>
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
-                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
-                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
-                  <Countbtn/>  
+                  <CountUp end={count.Flowers} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Flowering Shrubs</p>
+                  <Countbtn title="Flowers" count={count.Flowers}/>  
                 </div>  
               </div>
 
@@ -344,9 +352,9 @@ const DashHome = () => {
                 <img src={foliage} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
                 <div style={{marginRight:16}}>
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
-                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
-                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
-                  <Countbtn/>  
+                  <CountUp end={count.Foliage} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Foliage Shrubs</p>
+                  <Countbtn title="Foliage" count={count.Foliage}/>  
                 </div>  
               </div>
 
@@ -354,9 +362,9 @@ const DashHome = () => {
                 <img src={medicine} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
                 <div style={{marginRight:16}}>
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
-                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
-                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
-                  <Countbtn/>  
+                  <CountUp end={count.Medicinal} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Medicinal Plants</p>
+                  <Countbtn title="Medicinal" count={count.Medicinal}/>  
                 </div>  
               </div>
 
@@ -364,22 +372,13 @@ const DashHome = () => {
                 <img src={indoorplants} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
                 <div style={{marginRight:16}}>
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
-                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
-                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
-                  <Countbtn/>  
+                  <CountUp end={count.Indoor} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
+                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Indoor Plants</p>
+                  <Countbtn title="Indoor" count={count.Indoor}/>  
                 </div>  
               </div>
 
-              <div className="upload-count-card" style={{width:280,height:140,backgroundColor:'#89B8A3',borderRadius:16,display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:20}}>    
-                <img src={grasses} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
-                <div style={{marginRight:16}}>
-                  {/* <p style={{margin:0,fontSize}}>67678</p> */}
-                  <CountUp end={2000} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
-                  <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
-                  <Countbtn/> 
-                </div>  
-              </div>
-              
+         
               
             </div>
             </div>
