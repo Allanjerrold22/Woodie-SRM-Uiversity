@@ -1,8 +1,8 @@
 const images = {
   "India Gate": require("./Techpark.jpg"),
   Jaipur: require("./Techpark.jpg"),
-  "The Taj Mahal": require("./photo-1598324789736-4861f89564a0.jpeg"),
-  "Pamban Bridge": require("./photo-1597389935051-2f9dc0f05456.jpeg"),
+  "The Taj Mahal": require("./University.jpeg"),
+  "Pamban Bridge": require("./University.jpeg"),
   "Har Ki Dun": require("./photo-1618772446265-3f9f8e6f8487.jpeg"),
   "Patnem Beach": require("./photo-1615473787506-24ca223bf0e1.jpeg"),
   "Tsomgo Lake": require("./photo-1562413181-9013f9846bff.jpeg"),

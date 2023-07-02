@@ -141,7 +141,7 @@ const Feedbacks=()=>{
                                     </Dialog>
                              </div>
                                 <div style={{marginTop:20}}>
-                                        <p style={{color:'#656565',fontWeight:400,fontSize:14,width:'80%',textAlign:'left'}}>"🌳 Wow, I never knew our campus was such a green paradise! Scanning the QR codes on the trees to learn more about them is such a cool feature. 🌿 This is a perfect blend of technology and nature. Kudos to the university for creating an environment where we can truly appreciate and connect with nature! 🌱"</p>
+                                        <p style={{color:'#656565',fontWeight:400,fontSize:14,width:'80%',textAlign:'left'}}>{ele.comment}</p>
                                 </div>
                                 <div style={{width:'80%',height:1,backgroundColor:'#656565',marginTop:32}}/>
                              </div>

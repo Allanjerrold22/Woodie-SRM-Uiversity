@@ -13,7 +13,7 @@ import { db } from "../../../FirebaseConfig.js";
 import CreationPage from "../CreationPage.js";
 import Search from '../assets/Search.svg'
 import { Container, InputAdornment, TextField, InputBase } from "@mui/material";
-// import SearchIcon from "@mui/icons-material/Search";
+import SearchIcon from "@mui/icons-material/Search";
 import QRCode from "qrcode.react";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -107,18 +107,28 @@ const TreeTable = (props) => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Container >
             <TextField
+            
               color="grey"
               id="search"
               type="search"
               label="Search"
+              size="small"
+              // className={classes.textField}
+              
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
 
-              sx={{ width: 600 }}
+              sx={{
+                width: 300,
+                '& .MuiInputBase-root': {
+                  borderRadius:6,
+                },
+              }}
               InputProps={{
+                // className: classes.input,
                 endAdornment: (
-                  <InputAdornment position="end" >
-                    {/* <SearchIcon /> */}
+                  <InputAdornment  position="end" >
+                    <SearchIcon />
 
                   </InputAdornment>
                 ),
@@ -263,5 +273,16 @@ const TreeTable = (props) => {
     </div>
   );
 };
+
+// const styles = theme => ({
+//   textField: {
+//       width: 700,
+//       borderRadius:20,
+//       fontWeight: 500
+//   },
+//   input: {
+//       color: 'white'
+//   }
+// });
 
 export default TreeTable;

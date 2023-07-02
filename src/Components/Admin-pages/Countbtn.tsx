@@ -29,7 +29,7 @@ export default function BasicModalDialog(props) {
         color="neutral"
         // startDecorator={<Add/>}
         onClick={() => setOpen(true)}
-        style={{ width: 75, backgroundColor: '#1B4A35', color: '#fff' }}
+        style={{ width: 75, backgroundColor: '#1B4A35', color: '#fff'}}
       >
         Update
       </Button>

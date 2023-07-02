@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Woodie from '../assets/woodie.png'
+import '../Dashboard.css'
 import Tree from '../assets/tree-icon.svg'
 import QR from '../assets/QR.svg'
 import Palm from '../assets/3Dtree.png'
@@ -21,6 +22,7 @@ import Mapcard from "../Mapcard";
 import { DeleteTwoTone } from "@mui/icons-material";
 import UploadPlace from "../UploadPlace";
 import { useNavigate } from "react-router-dom";
+import mockup from "../assets/mockup.mp4"
 
 import trees from '../assets/treecount1.svg'
 import palm from '../assets/palm1.svg'
@@ -169,7 +171,7 @@ const DashHome = () => {
                 <div style={{ position: 'relative', top: -52, left: 330, width: 200 }}>
                   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'right', flexDirection: 'column' }}>
                     <p style={{ margin: 0, fontSize: 16, color: '#fff', fontWeight: 400, textAlign: 'left' }}>Total datas uploaded</p>
-                    <CountUp end={treeList.length} enableScrollSpy duration={5} style={{ fontSize: 46, fontWeight: 500, fontWeight: 800, color: '#fff', margin: 0 }} />
+                    <CountUp end={treeList.length} enableScrollSpy duration={3} style={{ fontSize: 46, fontWeight: 500, fontWeight: 800, color: '#fff', margin: 0 }} />
                     <button style={{ width: 120, height: 45, fontSize: 18, fontWeight: 500, backgroundColor: '#252525', color: '#fff', borderRadius: 12, marginTop: 16 }}> Upload </button>
                     
                   </div>
@@ -298,14 +300,22 @@ const DashHome = () => {
            <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <div className="count-admin-container" style={{display:'flex',justifyContent:'space-evenly',flexWrap:'wrap',alignItems:'center',width:'90%'}}>
               
-              <div className="upload-count-card" style={{width:280,height:140,backgroundColor:'#89B8A3',borderRadius:16,display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:20}}>    
+              <div className="upload-count-card" style={{width:280,height:140,backgroundColor:'#89B8A3',borderRadius:16,marginTop:20,display:'flex',alignItems:'center',justifyContent:'space-between'}}> 
+
+          
                 <img src={trees} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
                 <div style={{marginRight:16}}>
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
                   <CountUp end={count.Trees} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
+                  <div style={{position:'relative',top:10,left:8}}>
                   <Countbtn title="Trees" count={count.Trees}/>
+                  </div>
                 </div>  
+               
+             
+             
+             
               </div>
 
               <div className="upload-count-card" style={{width:280,height:140,backgroundColor:'#89B8A3',borderRadius:16,display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:20}}>    
@@ -314,7 +324,9 @@ const DashHome = () => {
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
                   <CountUp end={count.Palms} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Palms</p>
-                  <Countbtn title="Palms" count={count.Palms}/>               
+                  <div style={{position:'relative',top:10,left:8}}>
+                  <Countbtn title="Palms" count={count.Palms}/> 
+                  </div>              
                    </div>  
               </div>
 
@@ -324,7 +336,9 @@ const DashHome = () => {
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
                   <CountUp end={count.Climbers} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Climbers</p>
+                  <div style={{position:'relative',top:10,left:8}}>
                   <Countbtn title="Climbers" count={count.Climbers}/>  
+                  </div>
                 </div>  
               </div>
 
@@ -334,7 +348,9 @@ const DashHome = () => {
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
                   <CountUp end={count.Creepers} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Creepers</p>
+                  <div style={{position:'relative',top:10,left:8}}>
                   <Countbtn title="Creepers" count={count.Creepers}/>  
+                  </div>
                 </div>  
               </div>
 
@@ -344,7 +360,9 @@ const DashHome = () => {
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
                   <CountUp end={count.Flowers} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Flowering Shrubs</p>
+                  <div style={{position:'relative',top:10,left:72}}>
                   <Countbtn title="Flowers" count={count.Flowers}/>  
+                  </div>
                 </div>  
               </div>
 
@@ -354,7 +372,9 @@ const DashHome = () => {
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
                   <CountUp end={count.Foliage} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Foliage Shrubs</p>
+                  <div style={{position:'relative',top:10,left:52}}>
                   <Countbtn title="Foliage" count={count.Foliage}/>  
+                  </div>
                 </div>  
               </div>
 
@@ -364,7 +384,9 @@ const DashHome = () => {
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
                   <CountUp end={count.Medicinal} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Medicinal Plants</p>
-                  <Countbtn title="Medicinal" count={count.Medicinal}/>  
+                  <div style={{position:'relative',top:10,left:68}}>
+                  <Countbtn title="Medicinal" count={count.Medicinal}/> 
+                  </div> 
                 </div>  
               </div>
 
@@ -374,7 +396,9 @@ const DashHome = () => {
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
                   <CountUp end={count.Indoor} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Indoor Plants</p>
+                  <div style={{position:'relative',top:10,left:40}}>
                   <Countbtn title="Indoor" count={count.Indoor}/>  
+                  </div>
                 </div>  
               </div>
 
@@ -393,10 +417,37 @@ const DashHome = () => {
       <div className="hotspot-container" style={{ paddingLeft: 20, paddingRight: 20,height:800 }}>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 32 }}>
           <p style={{ fontSize: 24, fontWeight: 600, color: '#656565', margin: 0 }}>Hotspot Datas</p>
-          <UploadPlace values={nameList} setPlacesList={setPlacesList} />
+          <div style={{width:'80%',height:1,backgroundColor:'#656565'}}/>
+         
+        </div>
+        <div style={{ display: 'flex',alignItems:'center',justifyContent:'space-evenly',flexDirection:'row',marginTop:32}}>
+        <video className='videoTag' autoPlay loop muted style={{width:500,height:500,objectFit:'contain'}}>
+            <source src={mockup} type='video/mp4' />
+        </video>
+        <div style={{ width:500,height:500}}>
+
+          <p style={{fontSize:28,fontWeight:600,color:'#656565',textAlign:'center',margin:0,marginTop:32}}>INTRODUCING</p>
+          <p style={{fontSize:18,fontWeight:500,color:'#829D94',textAlign:'center',margin:0}}>Green Map</p>
+          <div className="mockup" style={{width:500,height:300,borderRadius:20,marginTop:20}}>
+            <p style={{color:'#ffff',textAlign:'center',fontSize:18,fontWeight:400,paddingLeft:30,paddingRight:30,paddingTop:32}}> Discover the Vibrant Hotspots and Green Oasis of Our University Campus</p>
+            <p style={{color:'#ffff',textAlign:'center',fontSize:14,fontWeight:400,paddingLeft:30,paddingRight:30,marginTop:32}}> Immerse yourself in the vibrant pulse of our university campus as you explore its hidden gems and hotspot destinations. From the bustling student hub to serene greenery havens, there's something for everyone to enjoy</p>
+            <div style={{display:'flex',alignItems:'center',justifyContent:'center',marginTop:20}}>
+
+           <UploadPlace values={nameList} setPlacesList={setPlacesList} />
+           </div>
+          </div>
+
+
+        </div>
         </div>
 
-        <div style={{ width: "100%", display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 32 }}>
+          <p style={{ fontSize: 24, fontWeight: 600, color: '#656565', margin: 0 }}>Uploaded Hotspot Datas</p>
+          <div style={{width:'70%',height:1,backgroundColor:'#656565'}}/>
+          </div>
+        <div style={{ width: "100%", display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', flexWrap: 'wrap',marginTop:32 }}>
+         
+
 
           {placesList.map((ele,index)=>{
             return(

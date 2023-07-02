@@ -33,7 +33,7 @@ const Responsivecard=(props)=>{
 
                     <div className="imgcontainer" style={{width:174, height:64}}>
                         
-                    <img src={("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(props.data.name) + "." + encodeURIComponent(props.data.ext1)).toString().replace("jpg","jpeg")} style={{ width: 174, borderTopLeftRadius: 20, borderTopRightRadius: 20, height:"200%", objectFit:'contain' }} />
+                    <img src={("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(props.data.name) + "." + encodeURIComponent(props.data.ext1)).toString().replace("jpg","jpeg")} style={{ width: 174, borderTopLeftRadius: 20, borderTopRightRadius: 20, height:"200%", objectFit:'cover' }} />
                     </div>
                 
                     <p style={{fontSize:16,color:"#252525",fontWeight:500,position:'absolute',top:"55%",marginLeft:16}}>{props.data.name}</p>

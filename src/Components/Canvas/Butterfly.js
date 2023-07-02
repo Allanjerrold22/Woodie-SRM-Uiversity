@@ -10,6 +10,7 @@ import { useFrame, useLoader } from "@react-three/fiber";
 import CanvasLoader from "../Loader";
 import tree from '../assets/treebg.jpg'
 import srmlogo from '../assets/Srmlogo.png';
+import Homecover from '../assets/counttree.jpg'
 
 const Computers = ({ isMobile }) => {
   
@@ -88,7 +89,7 @@ const Butterfly = () => {
   return (
     <div> 
       <div className={'modelbackgroud'} style={{ width: "100%",height:660 ,
-              backgroundImage: "url(/counttree.jpg)",
+              backgroundImage:  `url(${Homecover})`,
               position:'relative',
               backgroundSize: 'cover', 
               backgroundPosition: 'center center',
