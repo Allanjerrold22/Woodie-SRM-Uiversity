@@ -10,6 +10,7 @@ import medicine from '../Components/assets/medicinal-plant.svg'
 import indoorplants from '../Components/assets/indoor-pants.svg'
 import grasses from '../Components/assets/grasses.svg'
 import { db } from "../FirebaseConfig";
+import Allan from "./assets/Allan.png"
 
 import { useEffect, useState } from "react";
 import { doc, getDoc, collection, getDocs } from "firebase/firestore";
@@ -21,27 +22,19 @@ import { register } from "react-scroll/modules/mixins/scroller";
 
 const Countsection=()=>{
   const [countState, setCountState] = useState({})
-  let treeRegister = {}
 
-  async function fetchTrees() {
+  async function fetchTotalCount() {
+    const docRef = doc(db, "stats", "totalCount");
+    getDoc(docRef).then((doc) => {
+      setCountState(doc.data())
+    })
+  }
 
-    const querySnapshot = await getDocs(collection(db, "trees"));
-    querySnapshot.forEach((doc) => {
-      const data = doc.data()
-      if(data.type === "Trees"){
-        console.log(data)
-      }
-     
 
-        setCountState(current => ({...current, [data.type]: current[data.type] && treeRegister[data.name] !== true ? current[data.type] + 1 : 1 }))
-        treeRegister[data.name] = true
-
-    });
-}
 
 
 useEffect(() => {
-    fetchTrees()
+    fetchTotalCount()
 }, [])
 
 
