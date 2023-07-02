@@ -17,7 +17,7 @@ export default function QRgenerator({values}) {
   const handleDataSelection = (data) => {
     console.log("Done");
     setSelectedName(data)
-    setSelectedData("https://biodiversity.srmist.edu.in/Info?tree="+data);
+    setSelectedData("https://biodiversity.srmist.edu.in/#/Info?tree="+data);
   };
 
   const handleDownloadQR = () => {
