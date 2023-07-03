@@ -8,7 +8,7 @@ import Dashboard from './Components/Admin-pages/Dashboard';
 import Feedbacks from './Components/Admin-pages/Pages/Feedbacks';
 
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
   Route
  } from "react-router-dom";

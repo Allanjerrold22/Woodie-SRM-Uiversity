@@ -216,7 +216,7 @@ const TreeTable = (props) => {
                   <TableCell align="center">
 
                     <button  onClick={() => {
-                      setSelectedData("https://biodiversity.srmist.edu.in/Info?tree=" + row.name);
+                      setSelectedData("https://biodiversity.srmist.edu.in/#/Info?tree=" + row.name);
                       handleDownloadQR(row.name)
                     }} style={{ background: '#252525', borderRadius: 6, height: 32, marginTop:0,width:100,color:'#ffff'}}>Generate QR</button>
 

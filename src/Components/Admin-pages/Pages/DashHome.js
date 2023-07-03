@@ -325,7 +325,7 @@ const DashHome = () => {
                   <CountUp end={count.Palms} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Palms</p>
                   <div style={{position:'relative',top:10,left:8}}>
-                  <Countbtn title="Palms" count={count.Palms}/> 
+                  <Countbtn title="Palms" count={count.Palms} setCount={setCount} currentCount={count}/> 
                   </div>              
                    </div>  
               </div>
@@ -337,7 +337,7 @@ const DashHome = () => {
                   <CountUp end={count.Climbers} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Climbers</p>
                   <div style={{position:'relative',top:10,left:8}}>
-                  <Countbtn title="Climbers" count={count.Climbers}/>  
+                  <Countbtn title="Climbers" count={count.Climbers} setCount={setCount} currentCount={count}/>  
                   </div>
                 </div>  
               </div>
@@ -349,7 +349,7 @@ const DashHome = () => {
                   <CountUp end={count.Creepers} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Creepers</p>
                   <div style={{position:'relative',top:10,left:8}}>
-                  <Countbtn title="Creepers" count={count.Creepers}/>  
+                  <Countbtn title="Creepers" count={count.Creepers} setCount={setCount} currentCount={count}/>  
                   </div>
                 </div>  
               </div>
@@ -361,7 +361,7 @@ const DashHome = () => {
                   <CountUp end={count.Flowers} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Flowering Shrubs</p>
                   <div style={{position:'relative',top:10,left:72}}>
-                  <Countbtn title="Flowers" count={count.Flowers}/>  
+                  <Countbtn title="Flowers" count={count.Flowers} setCount={setCount} currentCount={count}/>  
                   </div>
                 </div>  
               </div>
@@ -373,19 +373,19 @@ const DashHome = () => {
                   <CountUp end={count.Foliage} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Foliage Shrubs</p>
                   <div style={{position:'relative',top:10,left:52}}>
-                  <Countbtn title="Foliage" count={count.Foliage}/>  
+                  <Countbtn title="Foliage" count={count.Foliage} setCount={setCount} currentCount={count}/>  
                   </div>
                 </div>  
               </div>
 
               <div className="upload-count-card" style={{width:280,height:140,backgroundColor:'#89B8A3',borderRadius:16,display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:20}}>    
-                <img src={medicine} style={{width:72,height:72,marginLeft:52,opacity:0.5}}/>
+                <img src={medicine} style={{width:72,height:72,marginLeft:52,opacity:0.5}} />
                 <div style={{marginRight:16}}>
                   {/* <p style={{margin:0,fontSize}}>67678</p> */}
                   <CountUp end={count.Medicinal} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Medicinal Plants</p>
                   <div style={{position:'relative',top:10,left:68}}>
-                  <Countbtn title="Medicinal" count={count.Medicinal}/> 
+                  <Countbtn title="Medicinal" count={count.Medicinal} setCount={setCount} currentCount={count}/> 
                   </div> 
                 </div>  
               </div>
@@ -397,7 +397,7 @@ const DashHome = () => {
                   <CountUp end={count.Indoor} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Indoor Plants</p>
                   <div style={{position:'relative',top:10,left:40}}>
-                  <Countbtn title="Indoor" count={count.Indoor}/>  
+                  <Countbtn title="Indoor" count={count.Indoor} setCount={setCount} currentCount={count}/>  
                   </div>
                 </div>  
               </div>
@@ -451,7 +451,7 @@ const DashHome = () => {
 
           {placesList.map((ele,index)=>{
             return(
-              <Mapcard item={ele} setPlacesList={setPlacesList}/>
+              <Mapcard item={ele} values={nameList} setPlacesList={setPlacesList}/>
             )
           })}
 

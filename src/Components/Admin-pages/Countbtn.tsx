@@ -18,6 +18,7 @@ export default function BasicModalDialog(props) {
   function updateCount() {
     const countRef = doc(db, "stats", "totalCount");
     updateDoc(countRef, {[props.title]: count});
+    props.setCount({...props.currentCount, [props.title]: count })
     setOpen(false)
   }
   

@@ -5,8 +5,13 @@ import Techpark from "../Admin-pages/assets/Techpark.jpg"
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../FirebaseConfig";
 import '../Admin-pages/Dashboard.css'
+import UploadPlace from "./UploadPlace";
+import MapcardUpload from "./MapcardUpload";
 
-const Mapcard = ({ item, setPlacesList }) => {
+const Mapcard = ({ item, values, setPlacesList, }) => {
+
+  const [open, setOpen] = React.useState(false);
+
 
   async function deletePlace() {
     deleteDoc(doc(db, "places", item.title)).then(() => {
@@ -28,7 +33,9 @@ const Mapcard = ({ item, setPlacesList }) => {
         <div style={{ display: 'flex', justifyContent: 'space-evenly', flexDirection: 'row', alignItems: 'center', marginTop: 20 }}>
           {/* <Button variant="contained" style={{background:'#656565',borderRadius:10,color:'#ffff'}}>Edit</Button>
             <Button variant="contained" style={{background:'#F25C6F',borderRadius:10,color:'#ffff'}}>Delete</Button> */}
-          <img src={Edit} style={{ width: 32, height: 32 }} />
+          <img onClick={()=>{
+            console.log(item)
+            setOpen(true)}} src={Edit} style={{ width: 32, height: 32 }} />
           <img onClick={deletePlace} src={Delete} style={{ width: 32, height: 32 }} />
 
 
@@ -36,6 +43,7 @@ const Mapcard = ({ item, setPlacesList }) => {
 
 
       </div>
+      <MapcardUpload item={item} values={values} setPlacesList={setPlacesList} open={open} setOpen={setOpen} />
 
     </div>
   )

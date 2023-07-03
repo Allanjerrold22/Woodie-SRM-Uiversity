@@ -83,6 +83,8 @@ useEffect(()=>{
       setTree(location.state)
     }else{
       const tree = searchParams.get("tree")
+      console.log("******")
+      console.log(tree)
       const docRef = doc(db, "trees", tree);
       getDoc(docRef).then((doc)=>{
         setTree(doc.data())
