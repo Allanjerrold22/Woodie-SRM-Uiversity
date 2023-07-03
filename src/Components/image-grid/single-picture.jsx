@@ -14,16 +14,14 @@ import Chip from '@mui/material/Chip';
 // import { ArrowDownwardRounded } from "@mui/icons-material";
 import ParkOutlinedIcon from '@mui/icons-material/ParkOutlined';
 import Tree from './palm-tree.png'
+import { useNavigate } from "react-router-dom";
 
 // Assets
 import images from "../../images";
 import { CloseIcon } from "../../images/CustomIcons";
 
-const handleClick = () => {
-  console.info('You clicked the Chip.');
-};
 
-// animation config and variants
+
 const spring = {
   type: "spring",
   stiffness: 500,
@@ -51,8 +49,17 @@ const SinglePicture = ({
   isSelected,
   setSelectedImage,
   index,
-  data: { creator, location, name, variant },
+  data: { creator, location, title, variant, name, ext, tags },
 }) => {
+
+  // const navigation = useNavigation();
+  const navigate = useNavigate()
+
+  const handleClick = (title) => {
+    navigate(`/Info?tree=${title}`)
+    console.info('You clicked the Chip.');
+  };
+
   const goBack = () => {
     setSelectedImage(-1);
   };
@@ -76,8 +83,10 @@ const SinglePicture = ({
           <CloseIcon />
         </Back>
       )}
+
+      {console.log(ext)}
       <Image
-        src={images[name]}
+        src={("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(title) + "Place." + encodeURIComponent(ext ? ext.toLowerCase() : ext)).toString().replace("jpg", "jpeg")}
         alt={name}
         onClick={() => {
           setSelectedImage(index);
@@ -94,40 +103,41 @@ const SinglePicture = ({
           variants={cardVariants}
         >
           <Location>{location}</Location>
-          <Name>{name}</Name>
-       
-            {/* <Avatar
+          <Name>{title}</Name>
+
+          {/* <Avatar
               image={
                 !!creator.avatar
                   ? `${creator.avatar}?q=10&w=50`
                   : images.avatarFallback
               }
             /> */}
-            {/* <PhotographerName>{creator.name}</PhotographerName> */}
+          {/* <PhotographerName>{creator.name}</PhotographerName> */}
 
-            <div style={{display:'flex',alignItems:'center',justifyContent:'space-evenly'}}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
 
-            
+            {tags.map((ele, index) => {
+              return (
+                <Chip
+                  label={ele}
+                  onClick={()=>handleClick(ele)}
+                  style={{ background: '#829D94', color: '#fff' }}
+                  icon={<ParkOutlinedIcon style={{ color: '#fff' }} />}
+                />
+              )
+            })}
+
+{/* 
             <Chip
               label="Banyan tree"
               onClick={handleClick}
-              style={{background:'#829D94',color:'#fff'}}
-              // onDelete={handleDelete}
-              // deleteIcon={<DoneIcon />}
-              icon={<ParkOutlinedIcon style={{color:'#fff'}}/>}
-            />
-            <Chip
-              label="Banyan tree"
-              onClick={handleClick}
-              style={{background:'#829D94',color:'#fff'}}
-              // onDelete={handleDelete}
-              // deleteIcon={<DoneIcon />}
-              icon={<ParkOutlinedIcon style={{color:'#fff'}}/>}
-            />
-            
-            </div>
-            
-   
+              style={{ background: '#829D94', color: '#fff' }}
+              icon={<ParkOutlinedIcon style={{ color: '#fff' }} />}
+            /> */}
+
+          </div>
+
+
 
         </InfoCard>
       )}
