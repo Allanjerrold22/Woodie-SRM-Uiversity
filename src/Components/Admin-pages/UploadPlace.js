@@ -95,7 +95,7 @@ export default function UploadPlace(props) {
         temp.push(ele.name)
       })
         const userObj = {
-            title: state.title,
+            title: state.title.trim(),
             location: state.location,
             tags: temp,
             ext: image.name.split(".").pop()

@@ -38,18 +38,20 @@ export default function CreationPage(props) {
     const [species, setSpecies] = useState("")
     const [modalUri, setModalUri] = useState("")
 
-    const [severity, setSeverity] = useState("info")
+    const [severity, setSeverity] = useState("success")
 
     async function updateExt() {
         const ref = doc(db, "trees", name);
         
-        setDoc(ref, {ext1: image.name.split(".").pop(),ext2: image2.name.split(".").pop(),ext3: image3.name.split(".").pop(),ext4: image4.name.split(".").pop()},{merge: true});
+        await setDoc(ref, {ext1: image.name.toLowerCase().split(".").pop(),ext2: image2.name.toLowerCase().split(".").pop(),ext3: image3.name.toLowerCase().split(".").pop(),ext4: image4.name.toLowerCase().split(".").pop()},{merge: true});
+        handleOpen("Success")
+
       }
 
     async function uploadTree() {
         try {
             const userObj = {
-                name: name,
+                name: name.trim(),
                 scientificName: scientificName,
                 location: location,
                 commonName: commonName,
@@ -91,11 +93,13 @@ export default function CreationPage(props) {
 
             //
 
+            setSeverity("success")
 
             handleOpen("Success")
 
             setOpen(false)
         } catch (e) {
+            setSeverity("error")
             handleOpen("Unknown error occured")
             console.error(e);
 
@@ -185,15 +189,25 @@ export default function CreationPage(props) {
 
         try {
 
-            await axios.request(config)
-            await axios.request(config2)
-            await axios.request(config3)
-            await axios.request(config4)
-            await updateExt()
+            const promise1 = axios.request(config)
+            const promise2 = axios.request(config2)
+            const promise3 = axios.request(config3)
+            const promise4 = axios.request(config4)
 
-            handleOpen("Success")
+            Promise.all([promise1, promise2, promise3,promise4]).then((values) => {
+                updateExt()
+
+            }).catch ((e)=>{
+                console.error(e)
+                setSeverity("error")
+                handleOpen("Unknown error occured")
+    
+            });
+
+
         } catch (e) {
             console.error(e)
+            setSeverity("error")
             handleOpen("Unknown error occured")
 
         }

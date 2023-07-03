@@ -7,14 +7,35 @@ import { useLockBodyScroll } from "react-use";
 // Components
 import SinglePicture from "./single-picture";
 
-// Styles
+
 import { Grid } from "./styles";
 
-// Data
-import data from "../../data.json";
+import { db } from "../../FirebaseConfig";
+import { doc, getDoc, collection, getDocs } from "firebase/firestore";
+
 
 const ImageGrid = ({ selectedImage, setSelectedImage }) => {
-  // helps in preventing the body from scrolling
+
+  const [places,setPlaces] = useState([{}])
+
+  async function fetchPlaces() {
+    let placesTemp = []
+    const querySnapshot = await getDocs(collection(db, "places"));
+    querySnapshot.forEach((doc) => {
+        const data = doc.data()
+        placesTemp.push(data)        
+    });
+    console.log(placesTemp);
+        setPlaces(placesTemp)
+    
+}
+
+
+useEffect(() => {
+    fetchPlaces()
+}, [])
+
+
   const [isScrollLocked, setScrollLocked] = useState(false);
   useLockBodyScroll(isScrollLocked);
 
@@ -29,7 +50,7 @@ const ImageGrid = ({ selectedImage, setSelectedImage }) => {
   return (
     <layoutId>
       <Grid>
-        {data.images.map((data, index) => (
+        {places.map((data, index) => (
           <SinglePicture
             key={`${data.name}-${index}`}
             isSelected={selectedImage === index}

@@ -45,12 +45,14 @@ const [src,setSrc] = useState([
 useEffect(()=>{
   console.log(  ("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(tree.name) + "." + encodeURIComponent(tree.ext1)).toString().replace("jpg","jpeg"),
   )
+  if(tree.name !== undefined){
   setSrc([
-    ("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(tree.name) + "." + encodeURIComponent(tree.ext1)).toString().replace("jpg","jpeg"),
+    ("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(tree.name.trim()) + "." + encodeURIComponent(tree.ext1)).toString().replace("jpg","jpeg"),
     ("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(tree.name) + "2." + encodeURIComponent(tree.ext2)).toString().replace("jpg","jpeg"),
     ("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(tree.name) + "3." + encodeURIComponent(tree.ext3)).toString().replace("jpg","jpeg"),
     ("https://biodiversity.srmist.edu.in/assets/images/" + encodeURIComponent(tree.name) + "4." + encodeURIComponent(tree.ext4)).toString().replace("jpg","jpeg"),
   ])
+}
 },[tree])
   
   const myRef = React.createRef();
