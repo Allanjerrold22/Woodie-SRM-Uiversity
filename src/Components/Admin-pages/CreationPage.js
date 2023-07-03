@@ -42,7 +42,8 @@ export default function CreationPage(props) {
 
     async function updateExt() {
         const ref = doc(db, "trees", name);
-        updateDoc(ref, {ext1: image.name.split(".").pop(),ext2: image2.name.split(".").pop(),ext3: image3.name.split(".").pop(),ext4: image4.name.split(".").pop()});
+        
+        setDoc(ref, {ext1: image.name.split(".").pop(),ext2: image2.name.split(".").pop(),ext3: image3.name.split(".").pop(),ext4: image4.name.split(".").pop()},{merge: true});
       }
 
     async function uploadTree() {
