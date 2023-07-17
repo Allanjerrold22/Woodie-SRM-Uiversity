@@ -1,5 +1,3 @@
-// Styles
-import { Flex } from "../../styles/globalStyles";
 import {
   Image,
   SinglePictureContainer,
@@ -11,12 +9,9 @@ import {
   Location,
 } from "./styles";
 import Chip from '@mui/material/Chip';
-// import { ArrowDownwardRounded } from "@mui/icons-material";
 import ParkOutlinedIcon from '@mui/icons-material/ParkOutlined';
 import Tree from './palm-tree.png'
 import { useNavigate } from "react-router-dom";
-
-// Assets
 import images from "../../images";
 import { CloseIcon } from "../../images/CustomIcons";
 

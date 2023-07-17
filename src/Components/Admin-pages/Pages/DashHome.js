@@ -42,7 +42,7 @@ const DashHome = () => {
 
   let navigate = useNavigate();
   const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
-  const [treeList, setTreeList] = React.useState([])
+  const [treeList, setTreeList] = React.useState(null)
   const [placesList, setPlacesList] = React.useState([])
 
   const [commentList, setCommentList] = React.useState([])
@@ -171,7 +171,7 @@ const DashHome = () => {
                 <div style={{ position: 'relative', top: -52, left: 330, width: 200 }}>
                   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'right', flexDirection: 'column' }}>
                     <p style={{ margin: 0, fontSize: 16, color: '#fff', fontWeight: 400, textAlign: 'left' }}>Total datas uploaded</p>
-                    <CountUp end={treeList.length} enableScrollSpy duration={3} style={{ fontSize: 46, fontWeight: 500, fontWeight: 800, color: '#fff', margin: 0 }} />
+                    <CountUp end={treeList ? treeList.length : 0} enableScrollSpy duration={3} style={{ fontSize: 46, fontWeight: 500, fontWeight: 800, color: '#fff', margin: 0 }} />
                     <button style={{ width: 120, height: 45, fontSize: 18, fontWeight: 500, backgroundColor: '#252525', color: '#fff', borderRadius: 12, marginTop: 16 }}> Upload </button>
                     
                   </div>
@@ -309,7 +309,7 @@ const DashHome = () => {
                   <CountUp end={count.Trees} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500,color:'#fff',margin:0}}/>
                   <p style={{margin:0,fontSize:16,color:'#EEEE',fontWeight:600}}>Trees</p>
                   <div style={{position:'relative',top:10,left:8}}>
-                  <Countbtn title="Trees" count={count.Trees}/>
+                  <Countbtn title="Trees" count={count.Trees} setCount={setCount} currentCount={count}/>
                   </div>
                 </div>  
                
@@ -409,7 +409,7 @@ const DashHome = () => {
            </div>
 
       <div style={{ backgroundColor: '#EEEE', paddingBottom: 72 }}>
-        {treeList.length !== 0 &&
+        {treeList !== null  &&
           <TreeTable treeList={treeList} />
         }
       </div>

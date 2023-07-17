@@ -65,7 +65,7 @@ export default function CreationPage(props) {
                 order: order,
                 genus: genus,
                 species: species,
-                modaluri: modalUri,
+                modaluri: modalUri ?? " ",
                 type: type
             }
             const treeRef = doc(db, 'trees', name);

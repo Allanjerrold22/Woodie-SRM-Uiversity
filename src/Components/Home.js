@@ -40,6 +40,7 @@ const Home = () => {
 
     const [scrollTop, setScrollTop] = React.useState(false);
     React.useEffect(() => {
+
         window.addEventListener("scroll", () => {
             if (window) {
                 setScrollTop(true);
