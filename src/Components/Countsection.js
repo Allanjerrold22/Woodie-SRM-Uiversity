@@ -113,7 +113,7 @@ useEffect(() => {
                     <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}> 
                         <img src ={flowers} style={{width:80,height:80}}/>
                       <div style={{alignItems:'center',justifyContent:'center',display:'flex'}}>
-                       <CountUp end={countState['Flowering Shrubs']} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
+                       <CountUp end={countState['Flowers']} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
                       </div>
                       <p style={{fontSize:16,fontWeight:400,textAlign:'center',position:'relative',top:-16}}>Flowering Shrubs</p>
                     </div>
@@ -123,7 +123,7 @@ useEffect(() => {
                     <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}> 
                         <img src ={foliage} style={{width:80,height:80}}/>
                       <div style={{alignItems:'center',justifyContent:'center',display:'flex'}}>
-                       <CountUp end={countState['Foliage Shrubs']} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
+                       <CountUp end={countState['Foliage']} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
                       </div>
                       <p style={{fontSize:16,fontWeight:400,textAlign:'center',position:'relative',top:-16}}>Foliage Shrubs</p>
                     </div>
@@ -133,7 +133,7 @@ useEffect(() => {
                     <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}> 
                         <img src ={medicine} style={{width:80,height:80}}/>
                       <div style={{alignItems:'center',justifyContent:'center',display:'flex'}}>
-                       <CountUp end={countState['Medicinal plants']} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
+                       <CountUp end={countState['Medicinal']} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
                       </div>
                       <p style={{fontSize:16,fontWeight:400,textAlign:'center',position:'relative',top:-16}}>Medicinal Plants</p>
                     </div>
@@ -143,7 +143,7 @@ useEffect(() => {
                     <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}> 
                         <img src ={indoorplants} style={{width:80,height:80}}/>
                       <div style={{alignItems:'center',justifyContent:'center',display:'flex'}}>
-                       <CountUp end={countState['Indoor plants']} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
+                       <CountUp end={countState['Indoor']} enableScrollSpy duration={5} style={{fontSize:26,textAlign:'center',fontWeight:500}}/>
                       </div>
                       <p style={{fontSize:16,fontWeight:400,textAlign:'center',position:'relative',top:-16}}>Indoor Plants</p>
                     </div>

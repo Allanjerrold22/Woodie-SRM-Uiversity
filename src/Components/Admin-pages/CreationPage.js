@@ -418,7 +418,7 @@ export default function CreationPage(props) {
                             <div style={{ marginTop: 20, width: 300 }}>
                                 <FormControl>
                                     <FormLabel>Order</FormLabel>
-                                    <Textarea value={genus} onChange={(e) => { setGenus(e.target.value) }} placeholder="" minRows={1} maxRows={1} />
+                                    <Textarea value={order} onChange={(e) => { setOrder(e.target.value) }} placeholder="" minRows={1} maxRows={1} />
                                     {/* <FormHelperText>This is a helper text.</FormHelperText> */}
                                 </FormControl>
                             </div>
