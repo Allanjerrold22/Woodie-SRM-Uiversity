@@ -88,7 +88,7 @@ const Butterfly = () => {
 
   return (
     <div> 
-      <div className={'modelbackgroud'} style={{ width: "100%",height:660 ,
+      <div className={'modelbackgroud'} style={{ width: "100%",height:460 ,
               backgroundImage:  `url(${Homecover})`,
               position:'relative',
               backgroundSize: 'cover', 
@@ -122,7 +122,7 @@ const Butterfly = () => {
       </div>  
       
     
-    <Canvas style={{height:500}}
+    <Canvas style={{height:300}}
       frameloop='demand'
       shadows
       dpr={[1, 2]}

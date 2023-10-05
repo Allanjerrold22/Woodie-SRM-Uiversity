@@ -106,7 +106,7 @@ const Home = () => {
 
 
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 20, flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 0, flexWrap: 'wrap' }}>
                 <Button onClick={() => {
                     setStackIndex(0)
                     setPage(1)

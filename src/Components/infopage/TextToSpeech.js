@@ -33,7 +33,13 @@ const TextToSpeech = ({ text }) => {
     } else {
       console.log("=========");
       console.log(synth.getVoices());
-      utterance.voice = synth.getVoices()[6];
+      let voices = synth.getVoices()
+      for (let i = 0; i < voices.length; i++) {
+        if (voices[i].lang === 'en-US' && voices[i].name.includes('Male')) {
+          utterance.voice = voices[i];
+        }
+      }
+      // utterance.voice = synth.getVoices()[6];
       utterance.pitch = pitch;
       utterance.rate = 0.9;
       utterance.volume = volume;

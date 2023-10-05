@@ -16,10 +16,7 @@ import { Button } from "@mui/material";
 import QRgenerator from "../QRgenerator";
 import { auth, db } from "../../../FirebaseConfig";
 import { doc, getDoc, collection, getDocs } from "firebase/firestore";
-import Techpark from "../assets/Techpark.jpg"
-import ParkOutlinedIcon from '@mui/icons-material/ParkOutlined';
 import Mapcard from "../Mapcard";
-import { DeleteTwoTone } from "@mui/icons-material";
 import UploadPlace from "../UploadPlace";
 import { useNavigate } from "react-router-dom";
 import mockup from "../assets/mockup.mp4"

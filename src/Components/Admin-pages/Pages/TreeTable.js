@@ -55,16 +55,17 @@ const TreeTable = (props) => {
   }
 
   async function deleteTree(name) {
-    deleteDoc(doc(db, "trees", name)).then(() => {
-      setTreeList((current) =>
-        current.filter((tree) => tree.name !== name)
-      );
-      setRows((current) =>
-        current.filter((tree) => tree.name !== name)
-      );
-    }).catch((e) => {
-      console.error(e);
-    })
+    console.log(name)
+    // deleteDoc(doc(db, "trees", name)).then(() => {
+    //   setTreeList((current) =>
+    //     current.filter((tree) => tree.name !== name)
+    //   );
+    //   setRows((current) =>
+    //     current.filter((tree) => tree.name !== name)
+    //   );
+    // }).catch((e) => {
+    //   console.error(e);
+    // })
   }
 
   function handleChangeRowsPerPage(event) {

@@ -45,6 +45,9 @@ const Feedbacks=()=>{
 
     function deleteComment(id){
         deleteDoc(doc(db, "feedbacks", id));
+        const newList = commentList.filter((ele) => ele.id !== id);
+
+        setCommentList(newList)
     }
 
     const [scrollTop, setScrollTop] = React.useState(false);
