@@ -163,7 +163,7 @@ const Info = () => {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Chip label="Scientific Name" style={{ fontSize: 12, backgroundColor: '#EEEE', color: '#252525', position: 'relative', top: -20 }} />
               </div>
-              <p style={{ fontSize: 16, fontWeight: 500, color: '#656565', textAlign: 'center', position: 'relative', top: -20 }}> {tree['scientificName']}</p>
+              <p style={{ fontSize: 16, fontWeight: 500, color: '#656565', textAlign: 'center', position: 'relative', top: -20, fontStyle:'italic' }}> {tree['scientificName']}</p>
             </div>
 
             <div className={'infocard'} style={{ borderRadius: 12, justifyContent: 'center', marginTop: 32, height: 200, width: 160 }}>
@@ -186,9 +186,9 @@ const Info = () => {
 
               <TextToSpeech text={tree.botanicalDes} />
             </div>
-            <p style={{ color: '#656565' }}>{tree.botanicalDes}</p>
+            <p style={{ color: '#656565', textAlign:'justify' }}>{tree.botanicalDes}</p>
             <p style={{ fontSize: 16, fontWeight: 500, }}>Uses</p>
-            <p style={{ color: '#656565' }}>{tree.uses}</p>
+            <p style={{ color: '#656565', textAlign:'justify' }}>{tree.uses}</p>
           </div>
         </div>
       </div>

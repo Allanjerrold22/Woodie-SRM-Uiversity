@@ -101,7 +101,7 @@ const QRsearchbar = ({
       filterOptions: options => {
         if (options === undefined) return [];
         let newOptions = options.filter(option => {
-          return option.toLowerCase().includes(internalValue.toLowerCase());
+          return option ? option.toLowerCase().includes(internalValue ? internalValue.toLowerCase() : "") : [];
         });
         return newOptions.slice(0, 5);
       },

@@ -18,6 +18,21 @@
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
 }
+
+/* @media only screen and (max-width: 600px) {
+  .countbg{
+
+    height: 800;
+  
+  }  
+} */
+
+.countbg{
+
+  height: 400;
+
+}
+
 .abtcard{
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
   border:1px solid #0000;

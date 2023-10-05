@@ -58,7 +58,7 @@ useEffect(() => {
 
             
 
-            <div  style={{ width: "100%",height:800 ,
+            <div className="countbg" style={{ width: "100%",height: window.innerWidth < 450 ? 800 : 400 ,
               backgroundImage:  `url(${Countcover})`,
               backgroundSize: 'cover', 
               backgroundPosition: 'center center',

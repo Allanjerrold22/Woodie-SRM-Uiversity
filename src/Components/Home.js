@@ -147,8 +147,10 @@ const Home = () => {
                 <Button onClick={() => {
                     setStackIndex(6)
                     setPage(1)
-                    setPaginationTreeList(staticList.filter((tree) => tree.type === "Medicinal plants"))
-                    setTreeList(staticList.filter((tree) => tree.type === "Medicinal plants"))
+                    console.log("---")
+                    console.log(staticList.filter((tree) => tree.type === "Medicinal plants"))
+                    setPaginationTreeList(staticList.filter((tree) => tree.type === "Medicinal Plants"))
+                    setTreeList(staticList.filter((tree) => tree.type === "Medicinal Plants"))
                 }} variant={stackIndex === 6 ? "contained" : "outlined"} style={stackIndex === 6 ? styles.selected : styles.unSelected}>Medicinal plants</Button>
                 <Button onClick={() => {
                     setStackIndex(7)

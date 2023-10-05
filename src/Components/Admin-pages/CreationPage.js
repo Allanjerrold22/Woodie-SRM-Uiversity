@@ -49,6 +49,7 @@ export default function CreationPage(props) {
       }
 
     async function uploadTree() {
+        // console.log(type)
         try {
             const userObj = {
                 name: name.trim(),
@@ -68,7 +69,7 @@ export default function CreationPage(props) {
                 modaluri: modalUri ?? " ",
                 type: type
             }
-            const treeRef = doc(db, 'trees', name);
+            const treeRef = doc(db, 'trees', name.trim());
             await setDoc(treeRef, userObj, { merge: true });
             props.setTreeList(oldArray => [...oldArray, userObj]);
             props.setRows(oldArray => [...oldArray, userObj]);
@@ -132,6 +133,7 @@ export default function CreationPage(props) {
 
     const handleChange = (event) => {
         setType(event.target.value);
+        // console.log(event.target.value)
     };
 
     async function uploadImages() {
