@@ -80,10 +80,9 @@ export default function MapcardUpload(props) {
   props.values.map((ele,index)=>{
     props.item.tags.map((tag,index)=>{
         if(ele == tag){
-            tagTemp.push({name: ele, id: index+1})
         }    
     })
-    
+    if(ele !== undefined)
     options.push({name: ele, id: index+1})
   })
   console.log(tagTemp)
@@ -96,6 +95,7 @@ export default function MapcardUpload(props) {
   }
 
   function onRemove(selectedList, removedItem) {
+
     setSelectedValues(selectedList)
   }
 
@@ -192,10 +192,12 @@ export default function MapcardUpload(props) {
             value={options[0]}
             style={{chips:{background:'black'}, option: {color:'black'}, multiselectContainer:{width:600, marginTop:20}, }}
             options={options} 
-            // selectedValues={(values)=>console.log(values)} 
+            // selectedValues={(/values)=>console.log(values)} 
+            selectedValues={selectedValues}
             onSelect={onSelect} 
             onRemove={onRemove} 
             displayValue="name" 
+
           />
           <input
              

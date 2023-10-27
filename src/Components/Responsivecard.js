@@ -37,7 +37,7 @@ const Responsivecard=(props)=>{
                     </div>
                 
                     <p style={{fontSize:16,color:"#252525",fontWeight:500,position:'absolute',top:"55%",marginLeft:16}}>{props.data.name}</p>
-                    <p style={{fontSize:14,color:"#767676",fontWeight:400,marginLeft:16 ,position:'absolute',top:"68%"}}>{props.data.scientificName}</p>
+                    <p style={{fontSize:14,color:"#767676",fontWeight:400,marginLeft:16 ,position:'absolute',top:"68%", fontStyle:'italic'}}>{props.data.scientificName}</p>
                 </div>
     )
 }

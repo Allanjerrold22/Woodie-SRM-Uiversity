@@ -72,7 +72,9 @@ export default function UploadPlace(props) {
   const [open, setOpen] = React.useState(false);
   const [state, setState] = useState({})
   let options = []
+  console.log(props.values)
   props.values.map((ele,index)=>{
+    if(ele !== undefined)
     options.push({name: ele, id: index+1})
   })
   const [selectedValues, setSelectedValues] = useState([])
@@ -182,7 +184,7 @@ export default function UploadPlace(props) {
           <Multiselect
             style={{chips:{background:'black'}, option: {color:'black'}, multiselectContainer:{width:600, marginTop:20}, }}
             options={options} 
-            selectedValues={(values)=>console.log(values)} 
+            selectedValues={selectedValues} 
             onSelect={onSelect} 
             onRemove={onRemove} 
             displayValue="name" 

@@ -59,20 +59,24 @@ const Home = () => {
     async function fetchTrees() {
         let temp = []
         let treeTemp = []
+        let _now = {}
         const querySnapshot = await getDocs(collection(db, "trees"));
         querySnapshot.forEach((doc) => {
             const data = doc.data()
             temp.push(data)
+            _now[data.type] = [ data.name]
             // setCountState({...countState, [data.type]: countState[data.type] + 1 })
             if (data.type === "Trees") {
                 treeTemp.push(data)
             }
         });
             setTreeList(treeTemp)
-            console.log(temp)
+            console.log(_now)
         
         setPaginationTreeList(treeTemp)
         setStaticList(temp)
+
+        // console.log(staticList)
     }
 
 
@@ -134,14 +138,14 @@ const Home = () => {
                 <Button onClick={() => {
                     setStackIndex(4)
                     setPage(1)
-                    setPaginationTreeList(staticList.filter((tree) => tree.type === "Flowering Shrubs"))
-                    setTreeList(staticList.filter((tree) => tree.type === "Flowering Shrubs"))
+                    setPaginationTreeList(staticList.filter((tree) => tree.type === "Flowering Shurbs"))
+                    setTreeList(staticList.filter((tree) => tree.type === "Flowering Shurbs"))
                 }} variant={stackIndex === 4 ? "contained" : "outlined"} style={stackIndex === 4 ? styles.selected : styles.unSelected}>Flowering Shrubs</Button>
                 <Button onClick={() => {
                     setStackIndex(5)
                     setPage(1)
-                    setPaginationTreeList(staticList.filter((tree) => tree.type === "Foliage Shrubs"))
-                    setTreeList(staticList.filter((tree) => tree.type === "Foliage Shrubs"))
+                    setPaginationTreeList(staticList.filter((tree) => tree.type === "Foliage Shurbs"))
+                    setTreeList(staticList.filter((tree) => tree.type === "Foliage Shurbs"))
                 }} variant={stackIndex === 5 ? "contained" : "outlined"} style={stackIndex === 5 ? styles.selected : styles.unSelected}>Foliage Shrubs</Button>
                 <Button onClick={() => {
                     setStackIndex(6)

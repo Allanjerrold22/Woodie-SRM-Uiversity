@@ -36,6 +36,7 @@ const TreeTable = (props) => {
   const [pg, setpg] = useState(0);
   const [rpg, setrpg] = useState(5);
   const [searchText, setSearchText] = useState("")
+  console.log(treeList)
 
 
 
