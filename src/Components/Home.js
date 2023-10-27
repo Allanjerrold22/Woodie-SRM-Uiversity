@@ -118,7 +118,6 @@ const Home = () => {
                     setPage(1)
                     setPaginationTreeList(staticList.filter((tree) => tree.type === "Palm"))
                     setTreeList(staticList.filter((tree) => tree.type === "Palm"))
-                    console.log(staticList.filter((tree) => tree.type === "Palm"))
                 }} variant={stackIndex === 1 ? "contained" : "outlined"} style={stackIndex === 1 ? styles.selected : styles.unSelected}>Palms</Button>
                 <Button onClick={() => {
                     setStackIndex(2)
@@ -155,8 +154,8 @@ const Home = () => {
                 <Button onClick={() => {
                     setStackIndex(7)
                     setPage(1)
-                    setPaginationTreeList(staticList.filter((tree) => tree.type === "Indoor plants"))
-                    setTreeList(staticList.filter((tree) => tree.type === "Indoor plants"))
+                    setPaginationTreeList(staticList.filter((tree) => tree.type === "Indoor Plants"))
+                    setTreeList(staticList.filter((tree) => tree.type === "Indoor Plants"))
                 }} variant={stackIndex === 7 ? "contained" : "outlined"} style={stackIndex === 7 ? styles.selected : styles.unSelected}>Indoor plants</Button>
             </div>
 

@@ -41,8 +41,9 @@ const TreeTable = (props) => {
 
   React.useEffect(() => {
     const getData = setTimeout(() => {
+      console.log("hii")
       const filteredRows = treeList.filter((row) => {
-        return row.name.toLowerCase().includes(searchText.toLowerCase());
+        return row.name ? row.name.toLowerCase().includes(searchText.toLowerCase()) : [];
       });
       setRows(filteredRows);
       setpg(0)
